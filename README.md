@@ -10,7 +10,7 @@ it is completely free and easy to use.
 - [x] Linux;
 - [x] MacOS;
 
-![Screenshot_354](https://user-images.githubusercontent.com/22732544/111829863-009e1c80-88cc-11eb-9dc1-0e6dc3cfab59.png)
+![image](https://user-images.githubusercontent.com/69592754/173405489-0dd25380-14fd-4603-b932-4389f057e461.png)
 
 <!-- ## Help Maintenance
 
