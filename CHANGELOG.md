@@ -1,3 +1,3 @@
-## 0.0.1
+## 0.0.2
 
-* Initial release.
+* Support for all 6 platforms.

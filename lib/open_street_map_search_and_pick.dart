@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
 import 'package:open_street_map_search_and_pick/models/latlong.dart';
@@ -31,25 +30,25 @@ class _OpenStreetMapSearchAndPickState
   MapController _mapController = MapController();
   TextEditingController _searchController = TextEditingController();
 
-  void TakeToCurrentLocation() async {
-    LocationPermission permission = await Geolocator.requestPermission();
-    if (permission != LocationPermission.deniedForever &&
-        permission != LocationPermission.denied) {
-      if (kDebugMode) {
-        print('Permission granted');
-      }
-      var position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
-      var lat = position.latitude;
-      var long = position.longitude;
-      _mapController.move(LatLng(lat, long), 15);
-      setNameCurrentPos();
-    } else {
-      if (kDebugMode) {
-        print('Permission denied');
-      }
-    }
-  }
+  // void TakeToCurrentLocation() async {
+  //   LocationPermission permission = await Geolocator.requestPermission();
+  //   if (permission != LocationPermission.deniedForever &&
+  //       permission != LocationPermission.denied) {
+  //     if (kDebugMode) {
+  //       print('Permission granted');
+  //     }
+  //     var position = await Geolocator.getCurrentPosition(
+  //         desiredAccuracy: LocationAccuracy.high);
+  //     var lat = position.latitude;
+  //     var long = position.longitude;
+  //     _mapController.move(LatLng(lat, long), 15);
+  //     setNameCurrentPos();
+  //   } else {
+  //     if (kDebugMode) {
+  //       print('Permission denied');
+  //     }
+  //   }
+  // }
 
   void setNameCurrentPos() async {
     var client = http.Client();
@@ -265,16 +264,16 @@ class _OpenStreetMapSearchAndPickState
                 },
                 child: Icon(Icons.zoom_out_map),
               )),
-          Positioned(
-              bottom: 60,
-              right: 5,
-              child: FloatingActionButton(
-                backgroundColor: Theme.of(context).primaryColor,
-                onPressed: () {
-                  TakeToCurrentLocation();
-                },
-                child: Icon(Icons.my_location),
-              )),
+          // Positioned(
+          //     bottom: 60,
+          //     right: 5,
+          //     child: FloatingActionButton(
+          //       backgroundColor: Theme.of(context).primaryColor,
+          //       onPressed: () {
+          //         TakeToCurrentLocation();
+          //       },
+          //       child: Icon(Icons.my_location),
+          //     )),
           Positioned(
             bottom: 0,
             left: 0,
