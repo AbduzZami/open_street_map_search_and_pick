@@ -22,6 +22,14 @@ I've been maintaining quite many repos these days and burning out slowly. If you
 This lib was designed to use open street map to set location on Flutter applications for all platforms.
 
 ## Getting Started
+
+
+Import the following package in your dart file
+
+```dart
+import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
+```
+
 To use is simple, just call the widget bellow. You need to pass the default center position of the map and a onPicked method to get the picked position from the map.
 
     OpenStreetMapSearchAndPick(
