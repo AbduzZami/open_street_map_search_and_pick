@@ -1,7 +1,7 @@
 name: open_street_map_search_and_pick
-description: A new Flutter package project.
+description: A flutter place search and location picker plugin that uses Open Street Map.
 version: 0.0.1
-homepage:
+homepage: https://github.com/AbduzZami/open_street_map_search_and_pick.git
 
 environment:
   sdk: ">=2.17.1 <3.0.0"
@@ -10,10 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
   flutter_lints: ^2.0.0
   cupertino_icons: ^1.0.2
   flutter_map: ^1.0.0
@@ -21,6 +17,12 @@ dev_dependencies:
   http: ^0.13.4
   flutter_typeahead: ^4.0.0
   latlong2: ^0.8.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
