@@ -1,39 +1,58 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Map Picker Flutter
+A flutter place search and location picker plugin that uses Open Street Map.
+it is completely free and easy to use.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+## This works on:
+- [x] Android;
+- [x] iOS;
+- [x] Web;
+- [x] Windows;
+- [x] Linux;
+- [x] MacOS;
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+![Screenshot_354](https://user-images.githubusercontent.com/22732544/111829863-009e1c80-88cc-11eb-9dc1-0e6dc3cfab59.png)
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+<!-- ## Help Maintenance
 
-## Features
+I've been maintaining quite many repos these days and burning out slowly. If you could help me cheer up, buying me a cup of coffee will make my life really happy and get much energy out of it.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+<a href="https://www.buymeacoffee.com/RtrHv1C" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a> -->
 
-## Getting started
+## Objective
+This lib was designed to use open street map to set location on Flutter applications for all platforms.
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## Getting Started
+To use is simple, just call the widget bellow. You need to pass the default center position of the map and a onPicked method to get the picked position from the map.
 
-## Usage
+    OpenStreetMapSearchAndPick(
+            center: LatLong(23, 89),
+            onPicked: (pickedData) {
+            })
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+# Then Usage
 
-```dart
-const like = 'sample';
-```
+Now if you press Set Current Loatiion button, you will get the pinned location by onPicked method.
 
-## Additional information
+In the onPicked method you will receive pickedData.
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+pickedData has two properties.
+
+1. latLong
+2. address
+
+latLong has two more properties.
+
+1. latitude
+2. longitude
+
+For example
+
+    OpenStreetMapSearchAndPick(
+            center: LatLong(23, 89),
+            onPicked: (pickedData) {
+               print(pickedData.latLong.latitude);
+               print(pickedData.latLong.longitude);
+               print(pickedData.address);
+            })
+
+You can get latitude, longitude and address like that.
