@@ -68,9 +68,9 @@ class _MyHomePageState extends State<MyHomePage> {
         body: OpenStreetMapSearchAndPick(
             center: LatLong(23, 89),
             onPicked: (pickedData) {
-              // print(pickedData.latLong.latitude);
-              // print(pickedData.latLong.longitude);
-              // print(pickedData.address);
+              print(pickedData.latLong.latitude);
+              print(pickedData.latLong.longitude);
+              print(pickedData.address);
             }));
   }
 }

@@ -4,10 +4,10 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
 import 'package:open_street_map_search_and_pick/models/latlong.dart';
+import 'package:open_street_map_search_and_pick/widgets/autocomplete.dart';
 import 'package:open_street_map_search_and_pick/widgets/wide_button.dart';
 
 import 'models/osmdata.dart';
@@ -65,6 +65,7 @@ class _OpenStreetMapSearchAndPickState
 
     _searchController.text =
         decodedResponse['display_name'] ?? "MOVE TO CURRENT POSITION";
+    setState(() {});
   }
 
   void setNameCurrentPosAtInit() async {
@@ -82,6 +83,7 @@ class _OpenStreetMapSearchAndPickState
 
     _searchController.text =
         decodedResponse['display_name'] ?? "MOVE TO CURRENT POSITION";
+    setState(() {});
   }
 
   @override
@@ -104,6 +106,7 @@ class _OpenStreetMapSearchAndPickState
             as Map<dynamic, dynamic>;
 
         _searchController.text = decodedResponse['display_name'];
+        setState(() {});
       }
     });
 
@@ -164,73 +167,99 @@ class _OpenStreetMapSearchAndPickState
             left: 0,
             right: 0,
             child: Container(
-              color: Colors.white,
               margin: EdgeInsets.all(15),
-              // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-              child: TypeAheadFormField(
-                textFieldConfiguration: TextFieldConfiguration(
-                    controller: _searchController,
-                    decoration: InputDecoration(
-                        labelText: 'Search Location',
-                        border: _inputBorder,
-                        focusedBorder: _inputFocusBorder)),
-                suggestionsCallback: (pattern) async {
-                  // return CitiesService.getSuggestions(pattern);
-                  var client = http.Client();
-                  try {
-                    // var response = await client.post(
-                    //     Uri.https('nominatim.openstreetmap.org', 'search'),
-                    //     body: {
-                    //       'q': 'tala',
-                    //       'format': 'json',
-                    //       'polygon_geojson': '1',
-                    //       'addressdetails': '1'
-                    //     });
-                    String url =
-                        'https://nominatim.openstreetmap.org/search?q=' +
-                            pattern +
-                            '&format=json&polygon_geojson=1&addressdetails=1';
-                    print(url);
-                    var response = await client.post(Uri.parse(url));
-                    var decodedResponse =
-                        jsonDecode(utf8.decode(response.bodyBytes))
-                            as List<dynamic>;
-                    print(decodedResponse);
-                    return decodedResponse
-                        .map((e) => OSMdata(
-                            displayname: e['display_name'],
-                            lat: double.parse(e['lat']),
-                            lon: double.parse(e['lon'])))
-                        .toList();
-                  } finally {
-                    client.close();
-                  }
-                  // return LoadInSplash.topics.where((element) =>
-                  //     element.toLowerCase().contains(pattern.toLowerCase()));
-                },
-                hideOnEmpty: true,
-                itemBuilder: (context, OSMdata suggestion) {
-                  return ListTile(
-                    title: Text(suggestion.displayname),
-                  );
-                },
-                transitionBuilder: (context, suggestionsBox, controller) {
-                  return suggestionsBox;
-                },
-                onSuggestionSelected: (OSMdata suggestion) {
-                  _searchController.text = suggestion.displayname;
-                  _mapController.move(
-                      LatLng(suggestion.lat, suggestion.lon), 15);
-                },
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please select a location';
-                  }
-                },
-                onSaved: (value) {
-                  // _topicController.text = value.toString();
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(
+                  color: Theme.of(context).primaryColor,
+                  width: 1,
+                ),
+              ),
+              child: AutocompleteOSMdata(
+                onPicked: (osMdata) {
+                  _searchController.text = osMdata.displayname;
+                  _mapController.move(LatLng(osMdata.lat, osMdata.lon), 15);
+                  setState(() {});
                 },
               ),
+              // child: TypeAheadFormField(
+              //   textFieldConfiguration: TextFieldConfiguration(
+              //       controller: _searchController,
+              //       decoration: InputDecoration(
+              //           labelText: 'Search Location',
+              //           border: _inputBorder,
+              //           focusedBorder: _inputFocusBorder)),
+              //   suggestionsCallback: (pattern) async {
+              //     // return CitiesService.getSuggestions(pattern);
+              //     var client = http.Client();
+              //     try {
+              //       // var response = await client.post(
+              //       //     Uri.https('nominatim.openstreetmap.org', 'search'),
+              //       //     body: {
+              //       //       'q': 'tala',
+              //       //       'format': 'json',
+              //       //       'polygon_geojson': '1',
+              //       //       'addressdetails': '1'
+              //       //     });
+              //       String url =
+              //           'https://nominatim.openstreetmap.org/search?q=' +
+              //               pattern +
+              //               '&format=json&polygon_geojson=1&addressdetails=1';
+              //       print(url);
+              //       var response = await client.post(Uri.parse(url));
+              //       var decodedResponse =
+              //           jsonDecode(utf8.decode(response.bodyBytes))
+              //               as List<dynamic>;
+              //       print(decodedResponse);
+              //       return decodedResponse
+              //           .map((e) => OSMdata(
+              //               displayname: e['display_name'],
+              //               lat: double.parse(e['lat']),
+              //               lon: double.parse(e['lon'])))
+              //           .toList();
+              //     } finally {
+              //       client.close();
+              //     }
+              //     // return LoadInSplash.topics.where((element) =>
+              //     //     element.toLowerCase().contains(pattern.toLowerCase()));
+              //   },
+              //   hideOnEmpty: true,
+              //   itemBuilder: (context, OSMdata suggestion) {
+              //     return ListTile(
+              //       title: Text(suggestion.displayname),
+              //     );
+              //   },
+              //   transitionBuilder: (context, suggestionsBox, controller) {
+              //     return suggestionsBox;
+              //   },
+              //   onSuggestionSelected: (OSMdata suggestion) {
+              //     _searchController.text = suggestion.displayname;
+              //     _mapController.move(
+              //         LatLng(suggestion.lat, suggestion.lon), 15);
+              //   },
+              //   validator: (value) {
+              //     if (value!.isEmpty) {
+              //       return 'Please select a location';
+              //     }
+              //   },
+              //   onSaved: (value) {
+              //     // _topicController.text = value.toString();
+              //   },
+              // ),
+            ),
+          ),
+          Positioned(
+            top: MediaQuery.of(context).size.height / 2,
+            left: 0,
+            right: 0,
+            child: IgnorePointer(
+              child: Center(
+                  child: Text(
+                _searchController.text,
+                textAlign: TextAlign.center,
+              )),
             ),
           ),
           Positioned.fill(
@@ -308,5 +337,3 @@ class _OpenStreetMapSearchAndPickState
     return PickedData(center, displayName);
   }
 }
-
-
