@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:open_street_map_search_and_pick/models/latlong.dart';
 import 'package:open_street_map_search_and_pick/widgets/autocomplete.dart';
 import 'package:open_street_map_search_and_pick/widgets/wide_button.dart';
+import 'models/osmdata.dart';
 import 'models/pickeddata.dart';
 
 class OpenStreetMapSearchAndPick extends StatefulWidget {
@@ -24,6 +25,8 @@ class _OpenStreetMapSearchAndPickState
     extends State<OpenStreetMapSearchAndPick> {
   MapController _mapController = MapController();
   TextEditingController _searchController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
+  final GlobalKey _autocompleteKey = GlobalKey();
 
   // void TakeToCurrentLocation() async {
   //   LocationPermission permission = await Geolocator.requestPermission();
@@ -163,22 +166,94 @@ class _OpenStreetMapSearchAndPickState
             right: 0,
             child: Container(
               margin: EdgeInsets.all(15),
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              // padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(5),
-                border: Border.all(
-                  color: Theme.of(context).primaryColor,
-                  width: 1,
-                ),
+                // border: Border.all(
+                //   color: Theme.of(context).primaryColor,
+                //   width: 1,
+                // ),
               ),
-              child: AutocompleteOSMdata(
-                onPicked: (osMdata) {
-                  _searchController.text = osMdata.displayname;
-                  _mapController.move(LatLng(osMdata.lat, osMdata.lon), 15);
-                  setState(() {});
-                },
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: _searchController,
+                    focusNode: _focusNode,
+                    decoration: InputDecoration(
+                      hintText: 'Search Location',
+                      border: _inputBorder,
+                      focusedBorder: _inputFocusBorder,
+                    ),
+                    onFieldSubmitted: (String value) {
+                      RawAutocomplete.onFieldSubmitted<OSMdata>(
+                          _autocompleteKey);
+                    },
+                  ),
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: RawAutocomplete<OSMdata>(
+                        key: _autocompleteKey,
+                        focusNode: _focusNode,
+                        textEditingController: _searchController,
+                        optionsBuilder:
+                            (TextEditingValue textEditingValue) async {
+                          var client = http.Client();
+                          try {
+                            String url =
+                                'https://nominatim.openstreetmap.org/search?q=' +
+                                    textEditingValue.text +
+                                    '&format=json&polygon_geojson=1&addressdetails=1';
+                            print(url);
+                            var response = await client.post(Uri.parse(url));
+                            var decodedResponse =
+                                jsonDecode(utf8.decode(response.bodyBytes))
+                                    as List<dynamic>;
+                            print(decodedResponse);
+                            return decodedResponse
+                                .map((e) => OSMdata(
+                                    displayname: e['display_name'],
+                                    lat: double.parse(e['lat']),
+                                    lon: double.parse(e['lon'])))
+                                .toList();
+                          } finally {
+                            client.close();
+                          }
+                        },
+                        optionsViewBuilder: (BuildContext context,
+                            AutocompleteOnSelected<OSMdata> onSelected,
+                            Iterable<OSMdata> options) {
+                          return Material(
+                            elevation: 4.0,
+                            child: ListView(
+                              children: options
+                                  .map((OSMdata option) => GestureDetector(
+                                        onTap: () {
+                                          onSelected(option);
+                                        },
+                                        child: ListTile(
+                                          title: Text(option.displayname),
+                                        ),
+                                      ))
+                                  .toList(),
+                            ),
+                          );
+                        },
+                        onSelected: (OSMdata option) {
+                          _mapController.move(
+                              LatLng(option.lat, option.lon), 15.0);
+                          // _searchController.text = option.displayname;
+                        }),
+                  )
+                ],
               ),
+              // child: AutocompleteOSMdata(
+              //   onPicked: (osMdata) {
+              //     _searchController.text = osMdata.displayname;
+              //     _mapController.move(LatLng(osMdata.lat, osMdata.lon), 15);
+              //     setState(() {});
+              //   },
+              // ),
               // child: TypeAheadFormField(
               //   textFieldConfiguration: TextFieldConfiguration(
               //       controller: _searchController,
@@ -245,18 +320,7 @@ class _OpenStreetMapSearchAndPickState
               // ),
             ),
           ),
-          Positioned(
-            top: MediaQuery.of(context).size.height / 2,
-            left: 0,
-            right: 0,
-            child: IgnorePointer(
-              child: Center(
-                  child: Text(
-                _searchController.text,
-                textAlign: TextAlign.center,
-              )),
-            ),
-          ),
+
           Positioned.fill(
               child: IgnorePointer(
             child: Center(
@@ -267,7 +331,7 @@ class _OpenStreetMapSearchAndPickState
             ),
           )),
           Positioned(
-              bottom: 180,
+              bottom: 120,
               right: 5,
               child: FloatingActionButton(
                 backgroundColor: Theme.of(context).primaryColor,
@@ -278,7 +342,7 @@ class _OpenStreetMapSearchAndPickState
                 child: Icon(Icons.zoom_in_map),
               )),
           Positioned(
-              bottom: 120,
+              bottom: 60,
               right: 5,
               child: FloatingActionButton(
                 backgroundColor: Theme.of(context).primaryColor,
