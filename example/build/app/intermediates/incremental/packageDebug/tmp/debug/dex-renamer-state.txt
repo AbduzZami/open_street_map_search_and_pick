@@ -1,0 +1,4 @@
+#Wed Jun 15 16:30:36 BDT 2022
+base.0=E\:\\Codes\\Flutter\\open_street_map_search_and_pick\\example\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

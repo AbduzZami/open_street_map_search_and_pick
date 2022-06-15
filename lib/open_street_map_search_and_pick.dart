@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -26,6 +27,8 @@ class _OpenStreetMapSearchAndPickState
   TextEditingController _searchController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   final GlobalKey _autocompleteKey = GlobalKey();
+  List<OSMdata> _options = <OSMdata>[];
+  Timer? _debounce;
 
   // void TakeToCurrentLocation() async {
   //   LocationPermission permission = await Geolocator.requestPermission();
@@ -80,7 +83,7 @@ class _OpenStreetMapSearchAndPickState
 
     _searchController.text =
         decodedResponse['display_name'] ?? "MOVE TO CURRENT POSITION";
-    setState(() {});
+    // setState(() {});
   }
 
   @override
@@ -103,7 +106,7 @@ class _OpenStreetMapSearchAndPickState
             as Map<dynamic, dynamic>;
 
         _searchController.text = decodedResponse['display_name'];
-        setState(() {});
+        // setState(() {});
       }
     });
 
@@ -125,6 +128,8 @@ class _OpenStreetMapSearchAndPickState
     OutlineInputBorder _inputFocusBorder = OutlineInputBorder(
       borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 3.0),
     );
+
+    // String? _autocompleteSelection;
     return SafeArea(
       child: Stack(
         children: [
@@ -159,167 +164,21 @@ class _OpenStreetMapSearchAndPickState
               // ),
             ],
           )),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              margin: EdgeInsets.all(15),
-              // padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5),
-                // border: Border.all(
-                //   color: Theme.of(context).primaryColor,
-                //   width: 1,
-                // ),
-              ),
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: _searchController,
-                    focusNode: _focusNode,
-                    decoration: InputDecoration(
-                      hintText: 'Search Location',
-                      border: _inputBorder,
-                      focusedBorder: _inputFocusBorder,
-                    ),
-                    onFieldSubmitted: (String value) {
-                      RawAutocomplete.onFieldSubmitted<OSMdata>(
-                          _autocompleteKey);
-                    },
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: RawAutocomplete<OSMdata>(
-                        key: _autocompleteKey,
-                        focusNode: _focusNode,
-                        textEditingController: _searchController,
-                        optionsBuilder:
-                            (TextEditingValue textEditingValue) async {
-                          var client = http.Client();
-                          try {
-                            String url =
-                                'https://nominatim.openstreetmap.org/search?q=' +
-                                    textEditingValue.text +
-                                    '&format=json&polygon_geojson=1&addressdetails=1';
-                            print(url);
-                            var response = await client.post(Uri.parse(url));
-                            var decodedResponse =
-                                jsonDecode(utf8.decode(response.bodyBytes))
-                                    as List<dynamic>;
-                            print(decodedResponse);
-                            return decodedResponse
-                                .map((e) => OSMdata(
-                                    displayname: e['display_name'],
-                                    lat: double.parse(e['lat']),
-                                    lon: double.parse(e['lon'])))
-                                .toList();
-                          } finally {
-                            client.close();
-                          }
-                        },
-                        optionsViewBuilder: (BuildContext context,
-                            AutocompleteOnSelected<OSMdata> onSelected,
-                            Iterable<OSMdata> options) {
-                          return Material(
-                            elevation: 4.0,
-                            child: ListView(
-                              children: options
-                                  .map((OSMdata option) => GestureDetector(
-                                        onTap: () {
-                                          onSelected(option);
-                                        },
-                                        child: ListTile(
-                                          title: Text(option.displayname),
-                                        ),
-                                      ))
-                                  .toList(),
-                            ),
-                          );
-                        },
-                        onSelected: (OSMdata option) {
-                          _mapController.move(
-                              LatLng(option.lat, option.lon), 15.0);
-                          // _searchController.text = option.displayname;
-                        }),
-                  )
-                ],
-              ),
-              // child: AutocompleteOSMdata(
-              //   onPicked: (osMdata) {
-              //     _searchController.text = osMdata.displayname;
-              //     _mapController.move(LatLng(osMdata.lat, osMdata.lon), 15);
-              //     setState(() {});
-              //   },
-              // ),
-              // child: TypeAheadFormField(
-              //   textFieldConfiguration: TextFieldConfiguration(
-              //       controller: _searchController,
-              //       decoration: InputDecoration(
-              //           labelText: 'Search Location',
-              //           border: _inputBorder,
-              //           focusedBorder: _inputFocusBorder)),
-              //   suggestionsCallback: (pattern) async {
-              //     // return CitiesService.getSuggestions(pattern);
-              //     var client = http.Client();
-              //     try {
-              //       // var response = await client.post(
-              //       //     Uri.https('nominatim.openstreetmap.org', 'search'),
-              //       //     body: {
-              //       //       'q': 'tala',
-              //       //       'format': 'json',
-              //       //       'polygon_geojson': '1',
-              //       //       'addressdetails': '1'
-              //       //     });
-              //       String url =
-              //           'https://nominatim.openstreetmap.org/search?q=' +
-              //               pattern +
-              //               '&format=json&polygon_geojson=1&addressdetails=1';
-              //       print(url);
-              //       var response = await client.post(Uri.parse(url));
-              //       var decodedResponse =
-              //           jsonDecode(utf8.decode(response.bodyBytes))
-              //               as List<dynamic>;
-              //       print(decodedResponse);
-              //       return decodedResponse
-              //           .map((e) => OSMdata(
-              //               displayname: e['display_name'],
-              //               lat: double.parse(e['lat']),
-              //               lon: double.parse(e['lon'])))
-              //           .toList();
-              //     } finally {
-              //       client.close();
-              //     }
-              //     // return LoadInSplash.topics.where((element) =>
-              //     //     element.toLowerCase().contains(pattern.toLowerCase()));
-              //   },
-              //   hideOnEmpty: true,
-              //   itemBuilder: (context, OSMdata suggestion) {
-              //     return ListTile(
-              //       title: Text(suggestion.displayname),
-              //     );
-              //   },
-              //   transitionBuilder: (context, suggestionsBox, controller) {
-              //     return suggestionsBox;
-              //   },
-              //   onSuggestionSelected: (OSMdata suggestion) {
-              //     _searchController.text = suggestion.displayname;
-              //     _mapController.move(
-              //         LatLng(suggestion.lat, suggestion.lon), 15);
-              //   },
-              //   validator: (value) {
-              //     if (value!.isEmpty) {
-              //       return 'Please select a location';
-              //     }
-              //   },
-              //   onSaved: (value) {
-              //     // _topicController.text = value.toString();
-              //   },
-              // ),
-            ),
-          ),
 
+          Positioned(
+              top: MediaQuery.of(context).size.height * 0.5,
+              left: 0,
+              right: 0,
+              child: IgnorePointer(
+                child: Center(
+                  child: StatefulBuilder(builder: (context, setState) {
+                    return Text(
+                      _searchController.text,
+                      textAlign: TextAlign.center,
+                    );
+                  }),
+                ),
+              )),
           Positioned.fill(
               child: IgnorePointer(
             child: Center(
@@ -361,6 +220,92 @@ class _OpenStreetMapSearchAndPickState
           //       },
           //       child: Icon(Icons.my_location),
           //     )),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              margin: EdgeInsets.all(15),
+              // padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+                // border: Border.all(
+                //   color: Theme.of(context).primaryColor,
+                //   width: 1,
+                // ),
+              ),
+
+              child: Column(
+                children: [
+                  TextFormField(
+                      controller: _searchController,
+                      focusNode: _focusNode,
+                      decoration: InputDecoration(
+                        hintText: 'Search Location',
+                        border: _inputBorder,
+                        focusedBorder: _inputFocusBorder,
+                      ),
+                      onChanged: (String value) {
+                        if (_debounce?.isActive ?? false) _debounce?.cancel();
+
+                        _debounce =
+                            Timer(const Duration(milliseconds: 2000), () async {
+                          print(value);
+                          var client = http.Client();
+                          try {
+                            String url =
+                                'https://nominatim.openstreetmap.org/search?q=' +
+                                    value +
+                                    '&format=json&polygon_geojson=1&addressdetails=1';
+                            print(url);
+                            var response = await client.post(Uri.parse(url));
+                            var decodedResponse =
+                                jsonDecode(utf8.decode(response.bodyBytes))
+                                    as List<dynamic>;
+                            print(decodedResponse);
+                            _options = decodedResponse
+                                .map((e) => OSMdata(
+                                    displayname: e['display_name'],
+                                    lat: double.parse(e['lat']),
+                                    lon: double.parse(e['lon'])))
+                                .toList();
+                            setState(() {});
+                          } finally {
+                            client.close();
+                          }
+
+                          setState(() {});
+                        });
+                      }),
+                  StatefulBuilder(builder: ((context, setState) {
+                    return ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: _options.length > 5 ? 5 : _options.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(_options[index].displayname),
+                            subtitle: Text(_options[index].lat.toString() +
+                                ',' +
+                                _options[index].lon.toString()),
+                            onTap: () {
+                              _mapController.move(
+                                  LatLng(
+                                      _options[index].lat, _options[index].lon),
+                                  15.0);
+
+                              _focusNode.unfocus();
+                              _options.clear();
+                              setState(() {});
+                            },
+                          );
+                        });
+                  })),
+                ],
+              ),
+            ),
+          ),
           Positioned(
             bottom: 0,
             left: 0,
