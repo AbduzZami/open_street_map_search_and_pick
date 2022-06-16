@@ -83,7 +83,7 @@ class _OpenStreetMapSearchAndPickState
 
     _searchController.text =
         decodedResponse['display_name'] ?? "MOVE TO CURRENT POSITION";
-    // setState(() {});
+    setState(() {});
   }
 
   @override
