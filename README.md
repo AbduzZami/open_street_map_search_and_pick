@@ -2,15 +2,14 @@
 A flutter place search and location picker plugin that uses Open Street Map.
 it is completely free and easy to use.
 
-## This works on:
-- [x] Android;
-- [x] iOS;
-- [x] Web;
-- [x] Windows;
-- [x] Linux;
-- [x] MacOS;
+## Features
 
-![image](https://user-images.githubusercontent.com/69592754/173405489-0dd25380-14fd-4603-b932-4389f057e461.png)
+* Pick location from map
+* Search location by places
+* Easy use
+
+
+![image](https://user-images.githubusercontent.com/69592754/173405489-0dd25380-14fd-4603-b932-4389f057e461.png | width=100)
 
 <!-- ## Help Maintenance
 
