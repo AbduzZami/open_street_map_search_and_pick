@@ -133,10 +133,8 @@ class _OpenStreetMapSearchAndPickState
                 //   return Text("© OpenStreetMap contributors");
                 // },
               ),
-             
             ],
           )),
-
           Positioned(
               top: MediaQuery.of(context).size.height * 0.5,
               left: 0,
@@ -182,7 +180,6 @@ class _OpenStreetMapSearchAndPickState
                 },
                 child: const Icon(Icons.zoom_out_map),
               )),
-
           Positioned(
             top: 0,
             left: 0,
@@ -193,7 +190,6 @@ class _OpenStreetMapSearchAndPickState
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(5),
               ),
-
               child: Column(
                 children: [
                   TextFormField(
@@ -248,7 +244,8 @@ class _OpenStreetMapSearchAndPickState
                         itemBuilder: (context, index) {
                           return ListTile(
                             title: Text(_options[index].displayname),
-                            subtitle: Text('${_options[index].lat},${_options[index].lon}'),
+                            subtitle: Text(
+                                '${_options[index].lat},${_options[index].lon}'),
                             onTap: () {
                               _mapController.move(
                                   LatLng(
