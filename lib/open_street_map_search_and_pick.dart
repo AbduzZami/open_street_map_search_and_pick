@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
-import 'package:open_street_map_search_and_pick/models/latlong.dart';
 import 'package:open_street_map_search_and_pick/widgets/wide_button.dart';
-import 'models/osmdata.dart';
-import 'models/pickeddata.dart';
 
 class OpenStreetMapSearchAndPick extends StatefulWidget {
   final LatLong center;
@@ -24,40 +22,23 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
 class _OpenStreetMapSearchAndPickState
     extends State<OpenStreetMapSearchAndPick> {
   MapController _mapController = MapController();
-  TextEditingController _searchController = TextEditingController();
+  final TextEditingController _searchController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-  final GlobalKey _autocompleteKey = GlobalKey();
   List<OSMdata> _options = <OSMdata>[];
   Timer? _debounce;
-
-  // void TakeToCurrentLocation() async {
-  //   LocationPermission permission = await Geolocator.requestPermission();
-  //   if (permission != LocationPermission.deniedForever &&
-  //       permission != LocationPermission.denied) {
-  //     if (kDebugMode) {
-  //       print('Permission granted');
-  //     }
-  //     var position = await Geolocator.getCurrentPosition(
-  //         desiredAccuracy: LocationAccuracy.high);
-  //     var lat = position.latitude;
-  //     var long = position.longitude;
-  //     _mapController.move(LatLng(lat, long), 15);
-  //     setNameCurrentPos();
-  //   } else {
-  //     if (kDebugMode) {
-  //       print('Permission denied');
-  //     }
-  //   }
-  // }
 
   void setNameCurrentPos() async {
     var client = http.Client();
     double latitude = _mapController.center.latitude;
     double longitude = _mapController.center.longitude;
-    print(latitude);
-    print(longitude);
+    if (kDebugMode) {
+      print(latitude);
+    }
+    if (kDebugMode) {
+      print(longitude);
+    }
     String url =
-        'https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1';
+        'https://nominatim.openstreetmap.org/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
 
     var response = await client.post(Uri.parse(url));
     var decodedResponse =
@@ -72,10 +53,14 @@ class _OpenStreetMapSearchAndPickState
     var client = http.Client();
     double latitude = widget.center.latitude;
     double longitude = widget.center.longitude;
-    print(latitude);
-    print(longitude);
+    if (kDebugMode) {
+      print(latitude);
+    }
+    if (kDebugMode) {
+      print(longitude);
+    }
     String url =
-        'https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1';
+        'https://nominatim.openstreetmap.org/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
 
     var response = await client.post(Uri.parse(url));
     var decodedResponse =
@@ -88,7 +73,6 @@ class _OpenStreetMapSearchAndPickState
 
   @override
   void initState() {
-    // TODO: implement initState
     _mapController = MapController();
 
     _mapController.onReady.then((_) {
@@ -115,17 +99,16 @@ class _OpenStreetMapSearchAndPickState
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _mapController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    OutlineInputBorder _inputBorder = OutlineInputBorder(
+    OutlineInputBorder inputBorder = OutlineInputBorder(
       borderSide: BorderSide(color: Theme.of(context).primaryColor),
     );
-    OutlineInputBorder _inputFocusBorder = OutlineInputBorder(
+    OutlineInputBorder inputFocusBorder = OutlineInputBorder(
       borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 3.0),
     );
 
@@ -150,18 +133,7 @@ class _OpenStreetMapSearchAndPickState
                 //   return Text("© OpenStreetMap contributors");
                 // },
               ),
-              // MarkerLayerOptions(
-              //   markers: [
-              //     Marker(
-              //       width: 80.0,
-              //       height: 80.0,
-              //       point: LatLng(51.5, -0.09),
-              //       builder: (ctx) => Container(
-              //         child: FlutterLogo(),
-              //       ),
-              //     ),
-              //   ],
-              // ),
+             
             ],
           )),
 
@@ -179,7 +151,7 @@ class _OpenStreetMapSearchAndPickState
                   }),
                 ),
               )),
-          Positioned.fill(
+          const Positioned.fill(
               child: IgnorePointer(
             child: Center(
               child: Icon(
@@ -197,7 +169,7 @@ class _OpenStreetMapSearchAndPickState
                   _mapController.move(
                       _mapController.center, _mapController.zoom + 1);
                 },
-                child: Icon(Icons.zoom_in_map),
+                child: const Icon(Icons.zoom_in_map),
               )),
           Positioned(
               bottom: 60,
@@ -208,32 +180,18 @@ class _OpenStreetMapSearchAndPickState
                   _mapController.move(
                       _mapController.center, _mapController.zoom - 1);
                 },
-                child: Icon(Icons.zoom_out_map),
+                child: const Icon(Icons.zoom_out_map),
               )),
-          // Positioned(
-          //     bottom: 60,
-          //     right: 5,
-          //     child: FloatingActionButton(
-          //       backgroundColor: Theme.of(context).primaryColor,
-          //       onPressed: () {
-          //         TakeToCurrentLocation();
-          //       },
-          //       child: Icon(Icons.my_location),
-          //     )),
+
           Positioned(
             top: 0,
             left: 0,
             right: 0,
             child: Container(
-              margin: EdgeInsets.all(15),
-              // padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              margin: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(5),
-                // border: Border.all(
-                //   color: Theme.of(context).primaryColor,
-                //   width: 1,
-                // ),
               ),
 
               child: Column(
@@ -243,27 +201,31 @@ class _OpenStreetMapSearchAndPickState
                       focusNode: _focusNode,
                       decoration: InputDecoration(
                         hintText: 'Search Location',
-                        border: _inputBorder,
-                        focusedBorder: _inputFocusBorder,
+                        border: inputBorder,
+                        focusedBorder: inputFocusBorder,
                       ),
                       onChanged: (String value) {
                         if (_debounce?.isActive ?? false) _debounce?.cancel();
 
                         _debounce =
                             Timer(const Duration(milliseconds: 2000), () async {
-                          print(value);
+                          if (kDebugMode) {
+                            print(value);
+                          }
                           var client = http.Client();
                           try {
                             String url =
-                                'https://nominatim.openstreetmap.org/search?q=' +
-                                    value +
-                                    '&format=json&polygon_geojson=1&addressdetails=1';
-                            print(url);
+                                'https://nominatim.openstreetmap.org/search?q=$value&format=json&polygon_geojson=1&addressdetails=1';
+                            if (kDebugMode) {
+                              print(url);
+                            }
                             var response = await client.post(Uri.parse(url));
                             var decodedResponse =
                                 jsonDecode(utf8.decode(response.bodyBytes))
                                     as List<dynamic>;
-                            print(decodedResponse);
+                            if (kDebugMode) {
+                              print(decodedResponse);
+                            }
                             _options = decodedResponse
                                 .map((e) => OSMdata(
                                     displayname: e['display_name'],
@@ -281,14 +243,12 @@ class _OpenStreetMapSearchAndPickState
                   StatefulBuilder(builder: ((context, setState) {
                     return ListView.builder(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: _options.length > 5 ? 5 : _options.length,
                         itemBuilder: (context, index) {
                           return ListTile(
                             title: Text(_options[index].displayname),
-                            subtitle: Text(_options[index].lat.toString() +
-                                ',' +
-                                _options[index].lon.toString()),
+                            subtitle: Text('${_options[index].lat},${_options[index].lon}'),
                             onTap: () {
                               _mapController.move(
                                   LatLng(
@@ -339,4 +299,39 @@ class _OpenStreetMapSearchAndPickState
     String displayName = decodedResponse['display_name'];
     return PickedData(center, displayName);
   }
+}
+
+class OSMdata {
+  final String displayname;
+  final double lat;
+  final double lon;
+  OSMdata({required this.displayname, required this.lat, required this.lon});
+  @override
+  String toString() {
+    return '$displayname, $lat, $lon';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (other.runtimeType != runtimeType) {
+      return false;
+    }
+    return other is OSMdata && other.displayname == displayname;
+  }
+
+  @override
+  int get hashCode => Object.hash(displayname, lat, lon);
+}
+
+class LatLong {
+  final double latitude;
+  final double longitude;
+  LatLong(this.latitude, this.longitude);
+}
+
+class PickedData {
+  final LatLong latLong;
+  final String address;
+
+  PickedData(this.latLong, this.address);
 }
