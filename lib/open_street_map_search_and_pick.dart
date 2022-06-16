@@ -106,7 +106,7 @@ class _OpenStreetMapSearchAndPickState
             as Map<dynamic, dynamic>;
 
         _searchController.text = decodedResponse['display_name'];
-        // setState(() {});
+        setState(() {});
       }
     });
 
