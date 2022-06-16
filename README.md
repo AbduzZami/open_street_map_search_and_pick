@@ -1,4 +1,3 @@
-# Map Picker Flutter
 A flutter place search and location picker plugin that uses Open Street Map.
 it is completely free and easy to use.
 
