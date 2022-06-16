@@ -6,10 +6,14 @@ it is completely free and easy to use.
 
 * Pick location from map
 * Search location by places
-* Easy use
+* Easy to use
 
 
-![image](https://user-images.githubusercontent.com/69592754/173405489-0dd25380-14fd-4603-b932-4389f057e461.png | width=100)
+
+
+## Demo
+![open_street_map_search_and_pick](https://user-images.githubusercontent.com/69592754/174075388-684404cf-ada9-4c44-a1c2-5fc9fcc872ba.png)
+
 
 <!-- ## Help Maintenance
 
