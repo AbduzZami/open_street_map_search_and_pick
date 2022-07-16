@@ -10,9 +10,15 @@ import 'package:open_street_map_search_and_pick/widgets/wide_button.dart';
 class OpenStreetMapSearchAndPick extends StatefulWidget {
   final LatLong center;
   final void Function(PickedData pickedData) onPicked;
-  const OpenStreetMapSearchAndPick(
-      {Key? key, required this.center, required this.onPicked})
-      : super(key: key);
+  Color buttonColor;
+  String buttonText;
+  OpenStreetMapSearchAndPick({
+    Key? key,
+    required this.center,
+    required this.onPicked,
+    this.buttonColor = Colors.blue,
+    this.buttonText = 'Set Current Location',
+  }) : super(key: key);
 
   @override
   State<OpenStreetMapSearchAndPick> createState() =>
@@ -159,7 +165,7 @@ class _OpenStreetMapSearchAndPickState
             ),
           )),
           Positioned(
-              bottom: 120,
+              bottom: 180,
               right: 5,
               child: FloatingActionButton(
                 backgroundColor: Theme.of(context).primaryColor,
@@ -170,7 +176,7 @@ class _OpenStreetMapSearchAndPickState
                 child: const Icon(Icons.zoom_in_map),
               )),
           Positioned(
-              bottom: 60,
+              bottom: 120,
               right: 5,
               child: FloatingActionButton(
                 backgroundColor: Theme.of(context).primaryColor,
@@ -179,6 +185,18 @@ class _OpenStreetMapSearchAndPickState
                       _mapController.center, _mapController.zoom - 1);
                 },
                 child: const Icon(Icons.zoom_out_map),
+              )),
+          Positioned(
+              bottom: 60,
+              right: 5,
+              child: FloatingActionButton(
+                backgroundColor: Theme.of(context).primaryColor,
+                onPressed: () {
+                  _mapController.move(
+                      LatLng(widget.center.latitude, widget.center.longitude),
+                      _mapController.zoom);
+                },
+                child: Icon(Icons.my_location),
               )),
           Positioned(
             top: 0,
@@ -270,11 +288,11 @@ class _OpenStreetMapSearchAndPickState
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: WideButton('Set Current Location', onPressed: () async {
+                child: WideButton(widget.buttonText, onPressed: () async {
                   pickData().then((value) {
                     widget.onPicked(value);
                   });
-                }, backgroundcolor: Theme.of(context).primaryColor),
+                }, backgroundcolor: widget.buttonColor),
               ),
             ),
           )

@@ -66,6 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: OpenStreetMapSearchAndPick(
             center: LatLong(23, 89),
+            buttonColor: Colors.blue,
+            buttonText: 'Set Current Location',
             onPicked: (pickedData) {
               print(pickedData.latLong.latitude);
               print(pickedData.latLong.longitude);
