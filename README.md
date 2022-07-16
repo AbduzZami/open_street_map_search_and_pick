@@ -11,7 +11,7 @@ it is completely free and easy to use.
 
 
 ## Demo
-![open_street_map_search_and_pick](https://user-images.githubusercontent.com/69592754/174075388-684404cf-ada9-4c44-a1c2-5fc9fcc872ba.png)
+![open street map search and pick](https://user-images.githubusercontent.com/69592754/179368498-fe392cdb-c321-46e8-ac4d-6b816e0a3758.png)
 
 
 <!-- ## Help Maintenance
@@ -36,6 +36,8 @@ To use is simple, just call the widget bellow. You need to pass the default cent
 
     OpenStreetMapSearchAndPick(
             center: LatLong(23, 89),
+            buttonColor: Colors.blue,
+            buttonText: 'Set Current Location',
             onPicked: (pickedData) {
             })
 
@@ -59,10 +61,15 @@ For example
 
     OpenStreetMapSearchAndPick(
             center: LatLong(23, 89),
+            buttonColor: Colors.blue,
+            buttonText: 'Set Current Location',
             onPicked: (pickedData) {
-               print(pickedData.latLong.latitude);
-               print(pickedData.latLong.longitude);
-               print(pickedData.address);
+              print(pickedData.latLong.latitude);
+              print(pickedData.latLong.longitude);
+              print(pickedData.address);
             })
 
 You can get latitude, longitude and address like that.
+
+# Video Tutorial
+[![Youtube Tutorial Link](https://i.ytimg.com/an_webp/VHDlC8wC9FI/mqdefault_6s.webp?du=3000&sqp=CMiDzJYG&rs=AOn4CLCzsPaqX6_PXzlcw71SdGJJXUW7ag)](https://youtu.be/VHDlC8wC9FI)
