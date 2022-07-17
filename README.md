@@ -72,4 +72,4 @@ For example
 You can get latitude, longitude and address like that.
 
 # Video Tutorial
-[![Youtube Tutorial Link](https://i.ytimg.com/an_webp/VHDlC8wC9FI/mqdefault_6s.webp?du=3000&sqp=CMiDzJYG&rs=AOn4CLCzsPaqX6_PXzlcw71SdGJJXUW7ag)](https://youtu.be/VHDlC8wC9FI)
+[![Youtube Tutorial Link](https://i.ytimg.com/an_webp/VHDlC8wC9FI/mqdefault_6s.webp?du=3000&sqp=CPCw0ZYG&rs=AOn4CLDWY_w3UB4r0ylKXx_6u87ucyVdhg)](https://youtu.be/VHDlC8wC9FI)
