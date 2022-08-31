@@ -168,6 +168,7 @@ class _OpenStreetMapSearchAndPickState
               bottom: 180,
               right: 5,
               child: FloatingActionButton(
+                heroTag: 'zoom_in',
                 backgroundColor: Theme.of(context).primaryColor,
                 onPressed: () {
                   _mapController.move(
@@ -179,6 +180,7 @@ class _OpenStreetMapSearchAndPickState
               bottom: 120,
               right: 5,
               child: FloatingActionButton(
+                heroTag: 'zoom_out',
                 backgroundColor: Theme.of(context).primaryColor,
                 onPressed: () {
                   _mapController.move(
@@ -190,6 +192,7 @@ class _OpenStreetMapSearchAndPickState
               bottom: 60,
               right: 5,
               child: FloatingActionButton(
+                heroTag: 'current_pos',
                 backgroundColor: Theme.of(context).primaryColor,
                 onPressed: () {
                   _mapController.move(
