@@ -72,4 +72,5 @@ For example
 You can get latitude, longitude and address like that.
 
 # Video Tutorial
+Click on the image below to view a video tutorial. It will redirect you to a youtube video.
 [![Click here to view the tutorial](https://img.youtube.com/vi/VHDlC8wC9FI/0.jpg)](https://www.youtube.com/watch?v=VHDlC8wC9FI)
