@@ -63,7 +63,7 @@
     },
     {
       "name": "flutter_map",
-      "rootUri": "file:///E:/flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_map-2.0.0",
+      "rootUri": "file:///E:/flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_map-2.2.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -75,7 +75,7 @@
     },
     {
       "name": "http",
-      "rootUri": "file:///E:/flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.4",
+      "rootUri": "file:///E:/flutter_windows_2.5.3-stable/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.5",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -248,7 +248,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2022-07-17T19:31:13.502639Z",
+  "generated": "2022-09-11T09:39:37.490152Z",
   "generator": "pub",
-  "generatorVersion": "2.17.5"
+  "generatorVersion": "2.17.6"
 }
