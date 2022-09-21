@@ -112,10 +112,10 @@ class _OpenStreetMapSearchAndPickState
   @override
   Widget build(BuildContext context) {
     OutlineInputBorder inputBorder = OutlineInputBorder(
-      borderSide: BorderSide(color: Theme.of(context).primaryColor),
+      borderSide: BorderSide(color: widget.buttonColor),
     );
     OutlineInputBorder inputFocusBorder = OutlineInputBorder(
-      borderSide: BorderSide(color: Theme.of(context).primaryColor, width: 3.0),
+      borderSide: BorderSide(color: widget.buttonColor, width: 3.0),
     );
 
     // String? _autocompleteSelection;
@@ -155,20 +155,19 @@ class _OpenStreetMapSearchAndPickState
                   }),
                 ),
               )),
-          const Positioned.fill(
+          Positioned.fill(
               child: IgnorePointer(
             child: Center(
-              child: Icon(
-                Icons.location_pin,
-                size: 50,
-              ),
+              child:
+                  Icon(Icons.location_pin, size: 50, color: widget.buttonColor),
             ),
           )),
           Positioned(
               bottom: 180,
               right: 5,
               child: FloatingActionButton(
-                backgroundColor: Theme.of(context).primaryColor,
+                heroTag: 'btn1',
+                backgroundColor: widget.buttonColor,
                 onPressed: () {
                   _mapController.move(
                       _mapController.center, _mapController.zoom + 1);
@@ -179,7 +178,8 @@ class _OpenStreetMapSearchAndPickState
               bottom: 120,
               right: 5,
               child: FloatingActionButton(
-                backgroundColor: Theme.of(context).primaryColor,
+                heroTag: 'btn2',
+                backgroundColor: widget.buttonColor,
                 onPressed: () {
                   _mapController.move(
                       _mapController.center, _mapController.zoom - 1);
@@ -190,7 +190,8 @@ class _OpenStreetMapSearchAndPickState
               bottom: 60,
               right: 5,
               child: FloatingActionButton(
-                backgroundColor: Theme.of(context).primaryColor,
+                heroTag: 'btn3',
+                backgroundColor: widget.buttonColor,
                 onPressed: () {
                   _mapController.move(
                       LatLng(widget.center.latitude, widget.center.longitude),
