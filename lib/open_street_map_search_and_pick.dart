@@ -196,6 +196,7 @@ class _OpenStreetMapSearchAndPickState
                   _mapController.move(
                       LatLng(widget.center.latitude, widget.center.longitude),
                       _mapController.zoom);
+                  setNameCurrentPos();
                 },
                 child: Icon(Icons.my_location),
               )),
