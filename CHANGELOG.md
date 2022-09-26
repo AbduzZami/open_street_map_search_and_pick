@@ -1,4 +1,4 @@
-## 0.0.14
+## 0.0.15
 
 * Support for all 6 platforms.
 * Delay for finishing typing.
