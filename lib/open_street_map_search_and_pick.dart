@@ -32,9 +32,9 @@ class _OpenStreetMapSearchAndPickState
   final FocusNode _focusNode = FocusNode();
   List<OSMdata> _options = <OSMdata>[];
   Timer? _debounce;
+  var client = http.Client();
 
   void setNameCurrentPos() async {
-    var client = http.Client();
     double latitude = _mapController.center.latitude;
     double longitude = _mapController.center.longitude;
     if (kDebugMode) {
@@ -56,7 +56,6 @@ class _OpenStreetMapSearchAndPickState
   }
 
   void setNameCurrentPosAtInit() async {
-    var client = http.Client();
     double latitude = widget.center.latitude;
     double longitude = widget.center.longitude;
     if (kDebugMode) {
@@ -81,9 +80,7 @@ class _OpenStreetMapSearchAndPickState
   void initState() {
     _mapController = MapController();
 
-    _mapController.onReady.then((_) {
-      setNameCurrentPosAtInit();
-    });
+    setNameCurrentPosAtInit();
 
     _mapController.mapEventStream.listen((event) async {
       if (event is MapEventMoveEnd) {
@@ -130,8 +127,8 @@ class _OpenStreetMapSearchAndPickState
                 maxZoom: 18,
                 minZoom: 6),
             mapController: _mapController,
-            layers: [
-              TileLayerOptions(
+            children: [
+              TileLayer(
                 urlTemplate:
                     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 subdomains: ['a', 'b', 'c'],
