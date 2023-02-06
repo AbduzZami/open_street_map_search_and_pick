@@ -1,23 +1,31 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
+import 'package:latlong2/latlong.dart';
+
 import 'package:open_street_map_search_and_pick/widgets/wide_button.dart';
 
 class OpenStreetMapSearchAndPick extends StatefulWidget {
   final LatLong center;
   final void Function(PickedData pickedData) onPicked;
-  Color buttonColor;
-  String buttonText;
-  OpenStreetMapSearchAndPick({
+  final Color buttonColor;
+  final Color buttonTextColor;
+  final String buttonText;
+  final String hintText;
+
+  const OpenStreetMapSearchAndPick({
     Key? key,
     required this.center,
     required this.onPicked,
     this.buttonColor = Colors.blue,
+    this.buttonTextColor = Colors.white,
     this.buttonText = 'Set Current Location',
+    this.hintText = 'Search Location',
   }) : super(key: key);
 
   @override
@@ -131,7 +139,7 @@ class _OpenStreetMapSearchAndPickState
               TileLayer(
                 urlTemplate:
                     "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                subdomains: ['a', 'b', 'c'],
+                subdomains: const ['a', 'b', 'c'],
                 // attributionBuilder: (_) {
                 //   return Text("© OpenStreetMap contributors");
                 // },
@@ -169,7 +177,10 @@ class _OpenStreetMapSearchAndPickState
                   _mapController.move(
                       _mapController.center, _mapController.zoom + 1);
                 },
-                child: const Icon(Icons.zoom_in_map),
+                child: Icon(
+                  Icons.zoom_in_map,
+                  color: widget.buttonTextColor,
+                ),
               )),
           Positioned(
               bottom: 120,
@@ -181,7 +192,10 @@ class _OpenStreetMapSearchAndPickState
                   _mapController.move(
                       _mapController.center, _mapController.zoom - 1);
                 },
-                child: const Icon(Icons.zoom_out_map),
+                child: Icon(
+                  Icons.zoom_out_map,
+                  color: widget.buttonTextColor,
+                ),
               )),
           Positioned(
               bottom: 60,
@@ -195,7 +209,10 @@ class _OpenStreetMapSearchAndPickState
                       _mapController.zoom);
                   setNameCurrentPos();
                 },
-                child: Icon(Icons.my_location),
+                child: Icon(
+                  Icons.my_location,
+                  color: widget.buttonTextColor,
+                ),
               )),
           Positioned(
             top: 0,
@@ -213,7 +230,7 @@ class _OpenStreetMapSearchAndPickState
                       controller: _searchController,
                       focusNode: _focusNode,
                       decoration: InputDecoration(
-                        hintText: 'Search Location',
+                        hintText: widget.hintText,
                         border: inputBorder,
                         focusedBorder: inputFocusBorder,
                       ),
@@ -287,11 +304,16 @@ class _OpenStreetMapSearchAndPickState
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: WideButton(widget.buttonText, onPressed: () async {
-                  pickData().then((value) {
-                    widget.onPicked(value);
-                  });
-                }, backgroundcolor: widget.buttonColor),
+                child: WideButton(
+                  widget.buttonText,
+                  onPressed: () async {
+                    pickData().then((value) {
+                      widget.onPicked(value);
+                    });
+                  },
+                  backgroundColor: widget.buttonColor,
+                  foregroundColor: widget.buttonTextColor,
+                ),
               ),
             ),
           )
