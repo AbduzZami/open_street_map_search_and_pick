@@ -15,6 +15,7 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final void Function(PickedData pickedData) onPicked;
   final Color buttonColor;
   final Color buttonTextColor;
+  final Color locationPinIconColor;
   final String buttonText;
   final String hintText;
 
@@ -23,6 +24,7 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
     required this.center,
     required this.onPicked,
     this.buttonColor = Colors.blue,
+    this.locationPinIconColor = Colors.blue,
     this.buttonTextColor = Colors.white,
     this.buttonText = 'Set Current Location',
     this.hintText = 'Search Location',
@@ -163,8 +165,11 @@ class _OpenStreetMapSearchAndPickState
           Positioned.fill(
               child: IgnorePointer(
             child: Center(
-              child:
-                  Icon(Icons.location_pin, size: 50, color: widget.buttonColor),
+              child: Icon(
+                Icons.location_pin,
+                size: 50,
+                color: widget.locationPinIconColor,
+              ),
             ),
           )),
           Positioned(
