@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 
 class WideButton extends StatelessWidget {
-  const WideButton(this.text,
-      {Key? key,
-      required,
-      this.padding = 0.0,
-      this.height = 45,
-      required this.onPressed,
-      required this.backgroundcolor})
-      : super(key: key);
+  const WideButton(
+    this.text, {
+    Key? key,
+    required,
+    this.padding = 0.0,
+    this.height = 45,
+    required this.onPressed,
+    required this.backgroundColor,
+    required this.foregroundColor,
+  }) : super(key: key);
 
   /// Should be inside a column, row or flex widget
   final String text;
   final double padding;
   final double height;
-  final Color backgroundcolor;
+  final Color backgroundColor;
+  final Color foregroundColor;
   final void Function() onPressed;
 
   @override
@@ -27,8 +30,9 @@ class WideButton extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: padding),
         child: ElevatedButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(backgroundcolor),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: backgroundColor,
+            foregroundColor: foregroundColor,
           ),
           onPressed: onPressed,
           child: Text(text),
