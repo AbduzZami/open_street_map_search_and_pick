@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   open_street_map_search_and_pick: 
     path: ..
+  geolocator: ^9.0.2
+  permission_handler: ^10.2.0
+  latlong2: ^0.8.1
 
 dev_dependencies:
   flutter_test:

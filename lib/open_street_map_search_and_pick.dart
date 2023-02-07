@@ -13,16 +13,20 @@ import 'package:open_street_map_search_and_pick/widgets/wide_button.dart';
 class OpenStreetMapSearchAndPick extends StatefulWidget {
   final LatLong center;
   final void Function(PickedData pickedData) onPicked;
+  final Future<LatLng> Function() onGetCurrentLocationPressed;
   final Color buttonColor;
   final Color buttonTextColor;
   final Color locationPinIconColor;
   final String buttonText;
   final String hintText;
 
+  static Future<LatLng> nopFunction(){throw Exception("");}
+
   const OpenStreetMapSearchAndPick({
     Key? key,
     required this.center,
     required this.onPicked,
+    this.onGetCurrentLocationPressed = nopFunction,
     this.buttonColor = Colors.blue,
     this.locationPinIconColor = Colors.blue,
     this.buttonTextColor = Colors.white,
@@ -208,11 +212,19 @@ class _OpenStreetMapSearchAndPickState
               child: FloatingActionButton(
                 heroTag: 'btn3',
                 backgroundColor: widget.buttonColor,
-                onPressed: () {
-                  _mapController.move(
-                      LatLng(widget.center.latitude, widget.center.longitude),
-                      _mapController.zoom);
-                  setNameCurrentPos();
+                onPressed: () async {
+                  try{
+                    LatLng position = await widget.onGetCurrentLocationPressed.call();
+                    _mapController.move(
+                        LatLng(position.latitude, position.longitude),
+                        _mapController.zoom);
+                  } catch (e) {
+                    _mapController.move(
+                        LatLng(widget.center.latitude, widget.center.longitude),
+                        _mapController.zoom);
+                  } finally {
+                    setNameCurrentPos();
+                  }
                 },
                 child: Icon(
                   Icons.my_location,
