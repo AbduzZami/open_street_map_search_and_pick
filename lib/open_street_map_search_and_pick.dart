@@ -122,13 +122,6 @@ class _OpenStreetMapSearchAndPickState
 
   @override
   Widget build(BuildContext context) {
-    OutlineInputBorder inputBorder = OutlineInputBorder(
-      borderSide: BorderSide(color: widget.buttonColor),
-    );
-    OutlineInputBorder inputFocusBorder = OutlineInputBorder(
-      borderSide: BorderSide(color: widget.buttonColor, width: 3.0),
-    );
-
     // String? _autocompleteSelection;
     return SafeArea(
       child: Stack(
