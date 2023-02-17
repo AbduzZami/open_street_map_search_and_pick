@@ -80,3 +80,10 @@ Click on the image below to view a video tutorial. It will redirect you to a you
 * Video 2
 
 [![Click here to view the tutorial](https://img.youtube.com/vi/kZRrH3UlxeU/0.jpg)](https://www.youtube.com/watch?v=kZRrH3UlxeU)
+
+
+# Contributors
+
+<a href="https://github.com/AbduzZami"><img src="https://avatars.githubusercontent.com/u/69592754?v=4" title="AbduzZami" width="80" height="80"></a>
+<a href="https://github.com/ZdenekKrcal"><img src="https://avatars.githubusercontent.com/u/51366376?v=4" title="ZdenekKrcal" width="80" height="80"></a>
+<a href="https://github.com/FlorianPix"><img src="https://avatars.githubusercontent.com/u/34790464?v=4" title="FlorianPix" width="80" height="80"></a>
