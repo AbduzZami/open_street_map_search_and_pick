@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Profile|x64">
+      <Configuration>Profile</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A0BB8A0B-141C-3C71-A4CF-D7A2FFF3994C}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>example</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Profile|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\runner\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">example.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">example</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\runner\Profile\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">example.dir\Profile\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">example</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\runner\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">example.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">example</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\Codes\Flutter\open_street_map_search_and_pick\example\windows;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\cpp_client_wrapper\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\geolocator_windows\windows\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\permission_handler_windows\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>"4100"</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_HAS_EXCEPTIONS=0;_DEBUG;NOMINMAX;UNICODE;_UNICODE;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_HAS_EXCEPTIONS=0;NOMINMAX;UNICODE;_UNICODE;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\Codes\Flutter\open_street_map_search_and_pick\example\windows;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\cpp_client_wrapper\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\geolocator_windows\windows\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\permission_handler_windows\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Codes\Flutter\open_street_map_search_and_pick\example\windows;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\cpp_client_wrapper\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\geolocator_windows\windows\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\permission_handler_windows\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\flutter\Debug\flutter_wrapper_app.lib;..\plugins\geolocator_windows\Debug\geolocator_windows_plugin.lib;..\plugins\permission_handler_windows\Debug\permission_handler_windows_plugin.lib;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\flutter_windows.dll.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/runner/Debug/example.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/runner/Debug/example.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <Manifest>
+      <AdditionalManifestFiles>E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\runner\runner.exe.manifest;</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\Codes\Flutter\open_street_map_search_and_pick\example\windows;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\cpp_client_wrapper\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\geolocator_windows\windows\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\permission_handler_windows\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>"4100"</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_HAS_EXCEPTIONS=0;NOMINMAX;UNICODE;_UNICODE;CMAKE_INTDIR="Profile";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_HAS_EXCEPTIONS=0;NOMINMAX;UNICODE;_UNICODE;CMAKE_INTDIR=\"Profile\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\Codes\Flutter\open_street_map_search_and_pick\example\windows;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\cpp_client_wrapper\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\geolocator_windows\windows\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\permission_handler_windows\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Codes\Flutter\open_street_map_search_and_pick\example\windows;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\cpp_client_wrapper\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\geolocator_windows\windows\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\permission_handler_windows\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\flutter\Profile\flutter_wrapper_app.lib;..\plugins\geolocator_windows\Profile\geolocator_windows_plugin.lib;..\plugins\permission_handler_windows\Profile\permission_handler_windows_plugin.lib;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\flutter_windows.dll.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/runner/Profile/example.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/runner/Profile/example.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <Manifest>
+      <AdditionalManifestFiles>E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\runner\runner.exe.manifest;</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\Codes\Flutter\open_street_map_search_and_pick\example\windows;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\cpp_client_wrapper\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\geolocator_windows\windows\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\permission_handler_windows\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DisableSpecificWarnings>"4100"</DisableSpecificWarnings>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_HAS_EXCEPTIONS=0;NOMINMAX;UNICODE;_UNICODE;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_HAS_EXCEPTIONS=0;NOMINMAX;UNICODE;_UNICODE;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\Codes\Flutter\open_street_map_search_and_pick\example\windows;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\cpp_client_wrapper\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\geolocator_windows\windows\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\permission_handler_windows\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Codes\Flutter\open_street_map_search_and_pick\example\windows;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\cpp_client_wrapper\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\geolocator_windows\windows\include;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\.plugin_symlinks\permission_handler_windows\windows\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\flutter\Release\flutter_wrapper_app.lib;..\plugins\geolocator_windows\Release\geolocator_windows_plugin.lib;..\plugins\permission_handler_windows\Release\permission_handler_windows_plugin.lib;E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\ephemeral\flutter_windows.dll.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/runner/Release/example.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/runner/Release/example.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+    <Manifest>
+      <AdditionalManifestFiles>E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\runner\runner.exe.manifest;</AdditionalManifestFiles>
+    </Manifest>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\runner\CMakeLists.txt">
+      <StdOutEncoding>UTF-8</StdOutEncoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule E:/Codes/Flutter/open_street_map_search_and_pick/example/windows/runner/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"F:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SE:/Codes/Flutter/open_street_map_search_and_pick/example/windows -BE:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows --check-stamp-file E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/runner/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\runner\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">Building Custom Rule E:/Codes/Flutter/open_street_map_search_and_pick/example/windows/runner/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">setlocal
+"F:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SE:/Codes/Flutter/open_street_map_search_and_pick/example/windows -BE:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows --check-stamp-file E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/runner/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\runner\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Profile|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule E:/Codes/Flutter/open_street_map_search_and_pick/example/windows/runner/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"F:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SE:/Codes/Flutter/open_street_map_search_and_pick/example/windows -BE:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows --check-stamp-file E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/runner/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\runner\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\runner\flutter_window.cpp" />
+    <ClCompile Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\runner\main.cpp" />
+    <ClCompile Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\runner\utils.cpp" />
+    <ClCompile Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\runner\win32_window.cpp" />
+    <ClCompile Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\flutter\generated_plugin_registrant.cc" />
+    <ResourceCompile Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\windows\runner\Runner.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\ZERO_CHECK.vcxproj">
+      <Project>{F5392706-125A-3F35-957D-FF510B34480C}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\flutter\flutter_assemble.vcxproj">
+      <Project>{C60F8CCB-9CCB-36AB-925C-2C7D3629E2B0}</Project>
+      <Name>flutter_assemble</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\flutter\flutter_wrapper_app.vcxproj">
+      <Project>{AA9C3CFB-4CA2-3D12-8DEC-843F1FF74FC1}</Project>
+      <Name>flutter_wrapper_app</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\plugins\geolocator_windows\geolocator_windows_plugin.vcxproj">
+      <Project>{D0DE5AFF-0F0B-322C-AB5E-C9C0D396EEDC}</Project>
+      <Name>geolocator_windows_plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\plugins\permission_handler_windows\permission_handler_windows_plugin.vcxproj">
+      <Project>{1057F467-A3CC-3B8D-B0AB-1649CB32BE39}</Project>
+      <Name>permission_handler_windows_plugin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

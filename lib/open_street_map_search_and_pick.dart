@@ -20,7 +20,9 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final String buttonText;
   final String hintText;
 
-  static Future<LatLng> nopFunction(){throw Exception("");}
+  static Future<LatLng> nopFunction() {
+    throw Exception("");
+  }
 
   const OpenStreetMapSearchAndPick({
     Key? key,
@@ -123,6 +125,12 @@ class _OpenStreetMapSearchAndPickState
   @override
   Widget build(BuildContext context) {
     // String? _autocompleteSelection;
+    OutlineInputBorder inputBorder = OutlineInputBorder(
+      borderSide: BorderSide(color: widget.buttonColor),
+    );
+    OutlineInputBorder inputFocusBorder = OutlineInputBorder(
+      borderSide: BorderSide(color: widget.buttonColor, width: 3.0),
+    );
     return SafeArea(
       child: Stack(
         children: [
@@ -206,8 +214,9 @@ class _OpenStreetMapSearchAndPickState
                 heroTag: 'btn3',
                 backgroundColor: widget.buttonColor,
                 onPressed: () async {
-                  try{
-                    LatLng position = await widget.onGetCurrentLocationPressed.call();
+                  try {
+                    LatLng position =
+                        await widget.onGetCurrentLocationPressed.call();
                     _mapController.move(
                         LatLng(position.latitude, position.longitude),
                         _mapController.zoom);
