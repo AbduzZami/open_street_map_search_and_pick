@@ -14,6 +14,9 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final LatLong center;
   final void Function(PickedData pickedData) onPicked;
   final Future<LatLng> Function() onGetCurrentLocationPressed;
+  final IconData zoomInIcon;
+  final IconData zoomOutIcon;
+  final IconData currentLocationIcon;
   final Color buttonColor;
   final Color buttonTextColor;
   final Color locationPinIconColor;
@@ -28,6 +31,9 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
     Key? key,
     required this.center,
     required this.onPicked,
+    this.zoomOutIcon =  Icons.zoom_out_map,
+    this.zoomInIcon =Icons.zoom_in_map,
+    this.currentLocationIcon = Icons.my_location,
     this.onGetCurrentLocationPressed = nopFunction,
     this.buttonColor = Colors.blue,
     this.locationPinIconColor = Colors.blue,
@@ -188,7 +194,7 @@ class _OpenStreetMapSearchAndPickState
                       _mapController.center, _mapController.zoom + 1);
                 },
                 child: Icon(
-                  Icons.zoom_in_map,
+                widget.zoomInIcon,
                   color: widget.buttonTextColor,
                 ),
               )),
@@ -203,7 +209,7 @@ class _OpenStreetMapSearchAndPickState
                       _mapController.center, _mapController.zoom - 1);
                 },
                 child: Icon(
-                  Icons.zoom_out_map,
+                widget.zoomOutIcon,
                   color: widget.buttonTextColor,
                 ),
               )),
@@ -229,7 +235,7 @@ class _OpenStreetMapSearchAndPickState
                   }
                 },
                 child: Icon(
-                  Icons.my_location,
+                widget.currentLocationIcon ,
                   color: widget.buttonTextColor,
                 ),
               )),
