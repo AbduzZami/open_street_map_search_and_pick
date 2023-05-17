@@ -87,3 +87,4 @@ Click on the image below to view a video tutorial. It will redirect you to a you
 <a href="https://github.com/AbduzZami"><img src="https://avatars.githubusercontent.com/u/69592754?v=4" title="AbduzZami" width="80" height="80"></a>
 <a href="https://github.com/ZdenekKrcal"><img src="https://avatars.githubusercontent.com/u/51366376?v=4" title="ZdenekKrcal" width="80" height="80"></a>
 <a href="https://github.com/FlorianPix"><img src="https://avatars.githubusercontent.com/u/34790464?v=4" title="FlorianPix" width="80" height="80"></a>
+<a href="https://github.com/A7MeDG0L0L"><img src="https://avatars.githubusercontent.com/u/33913003?v=4" title="Ahmed Galal" width="80" height="80"></a>
