@@ -22,25 +22,27 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final Color locationPinIconColor;
   final String buttonText;
   final String hintText;
+  final String baseUri;
 
   static Future<LatLng> nopFunction() {
     throw Exception("");
   }
 
-  const OpenStreetMapSearchAndPick({
-    Key? key,
-    required this.center,
-    required this.onPicked,
-    this.zoomOutIcon =  Icons.zoom_out_map,
-    this.zoomInIcon =Icons.zoom_in_map,
-    this.currentLocationIcon = Icons.my_location,
-    this.onGetCurrentLocationPressed = nopFunction,
-    this.buttonColor = Colors.blue,
-    this.locationPinIconColor = Colors.blue,
-    this.buttonTextColor = Colors.white,
-    this.buttonText = 'Set Current Location',
-    this.hintText = 'Search Location',
-  }) : super(key: key);
+  const OpenStreetMapSearchAndPick(
+      {Key? key,
+      required this.center,
+      required this.onPicked,
+      this.zoomOutIcon = Icons.zoom_out_map,
+      this.zoomInIcon = Icons.zoom_in_map,
+      this.currentLocationIcon = Icons.my_location,
+      this.onGetCurrentLocationPressed = nopFunction,
+      this.buttonColor = Colors.blue,
+      this.locationPinIconColor = Colors.blue,
+      this.buttonTextColor = Colors.white,
+      this.buttonText = 'Set Current Location',
+      this.hintText = 'Search Location',
+      this.baseUri = 'https://nominatim.openstreetmap.org'})
+      : super(key: key);
 
   @override
   State<OpenStreetMapSearchAndPick> createState() =>
@@ -66,7 +68,7 @@ class _OpenStreetMapSearchAndPickState
       print(longitude);
     }
     String url =
-        'https://nominatim.openstreetmap.org/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
+        '${widget.baseUri}/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
 
     var response = await client.post(Uri.parse(url));
     var decodedResponse =
@@ -86,8 +88,9 @@ class _OpenStreetMapSearchAndPickState
     if (kDebugMode) {
       print(longitude);
     }
+
     String url =
-        'https://nominatim.openstreetmap.org/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
+        '${widget.baseUri}/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
 
     var response = await client.post(Uri.parse(url));
     var decodedResponse =
@@ -108,7 +111,7 @@ class _OpenStreetMapSearchAndPickState
       if (event is MapEventMoveEnd) {
         var client = http.Client();
         String url =
-            'https://nominatim.openstreetmap.org/reverse?format=json&lat=${event.center.latitude}&lon=${event.center.longitude}&zoom=18&addressdetails=1';
+            '${widget.baseUri}/reverse?format=json&lat=${event.center.latitude}&lon=${event.center.longitude}&zoom=18&addressdetails=1';
 
         var response = await client.post(Uri.parse(url));
         var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes))
@@ -270,7 +273,7 @@ class _OpenStreetMapSearchAndPickState
                           var client = http.Client();
                           try {
                             String url =
-                                'https://nominatim.openstreetmap.org/search?q=$value&format=json&polygon_geojson=1&addressdetails=1';
+                                '${widget.baseUri}/search?q=$value&format=json&polygon_geojson=1&addressdetails=1';
                             if (kDebugMode) {
                               print(url);
                             }
@@ -352,7 +355,7 @@ class _OpenStreetMapSearchAndPickState
         _mapController.center.latitude, _mapController.center.longitude);
     var client = http.Client();
     String url =
-        'https://nominatim.openstreetmap.org/reverse?format=json&lat=${_mapController.center.latitude}&lon=${_mapController.center.longitude}&zoom=18&addressdetails=1';
+        '${widget.baseUri}/reverse?format=json&lat=${_mapController.center.latitude}&lon=${_mapController.center.longitude}&zoom=18&addressdetails=1';
 
     var response = await client.post(Uri.parse(url));
     var decodedResponse =
