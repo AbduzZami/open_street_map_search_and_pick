@@ -24,27 +24,29 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final TextStyle? locationPinTextStyle;
   final String buttonText;
   final String hintText;
+  final TextStyle? buttonTextStyle;
 
   static Future<LatLng> nopFunction() {
     throw Exception("");
   }
 
-  const OpenStreetMapSearchAndPick({
-    Key? key,
-    required this.center,
-    required this.onPicked,
-    this.zoomOutIcon = Icons.zoom_out_map,
-    this.zoomInIcon = Icons.zoom_in_map,
-    this.currentLocationIcon = Icons.my_location,
-    this.onGetCurrentLocationPressed = nopFunction,
-    this.buttonColor = Colors.blue,
-    this.locationPinIconColor = Colors.blue,
-    this.locationPinText,
-    this.locationPinTextStyle,
-    this.buttonTextColor = Colors.white,
-    this.buttonText = 'Set Current Location',
-    this.hintText = 'Search Location',
-  }) : super(key: key);
+  const OpenStreetMapSearchAndPick(
+      {Key? key,
+      required this.center,
+      required this.onPicked,
+      this.zoomOutIcon = Icons.zoom_out_map,
+      this.zoomInIcon = Icons.zoom_in_map,
+      this.currentLocationIcon = Icons.my_location,
+      this.onGetCurrentLocationPressed = nopFunction,
+      this.buttonColor = Colors.blue,
+      this.locationPinIconColor = Colors.blue,
+      this.locationPinText,
+      this.locationPinTextStyle,
+      this.buttonTextColor = Colors.white,
+      this.buttonText = 'Set Current Location',
+      this.hintText = 'Search Location',
+      this.buttonTextStyle})
+      : super(key: key);
 
   @override
   State<OpenStreetMapSearchAndPick> createState() =>
@@ -339,6 +341,7 @@ class _OpenStreetMapSearchAndPickState
                   },
                   backgroundColor: widget.buttonColor,
                   foregroundColor: widget.buttonTextColor,
+                  textStyle: widget.buttonTextStyle,
                 ),
               ),
             ),
