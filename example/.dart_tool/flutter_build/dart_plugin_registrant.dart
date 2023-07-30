@@ -23,7 +23,6 @@ class _PluginRegistrant {
           '`geolocator_android` threw an error: $err. '
           'The app may not function as expected until you remove this plugin from pubspec.yaml'
         );
-        rethrow;
       }
 
     } else if (Platform.isIOS) {
@@ -34,7 +33,6 @@ class _PluginRegistrant {
           '`geolocator_apple` threw an error: $err. '
           'The app may not function as expected until you remove this plugin from pubspec.yaml'
         );
-        rethrow;
       }
 
     } else if (Platform.isLinux) {
@@ -46,7 +44,6 @@ class _PluginRegistrant {
           '`geolocator_apple` threw an error: $err. '
           'The app may not function as expected until you remove this plugin from pubspec.yaml'
         );
-        rethrow;
       }
 
     } else if (Platform.isWindows) {

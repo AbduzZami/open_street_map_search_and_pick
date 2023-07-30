@@ -7,7 +7,9 @@ class WideButton extends StatelessWidget {
     required,
     this.padding = 0.0,
     this.height = 45,
+    this.width = 300,
     required this.onPressed,
+    required this.textStyle,
     required this.backgroundColor,
     required this.foregroundColor,
   }) : super(key: key);
@@ -16,7 +18,9 @@ class WideButton extends StatelessWidget {
   final String text;
   final double padding;
   final double height;
+  final double width;
   final Color backgroundColor;
+  final TextStyle textStyle;
   final Color foregroundColor;
   final void Function() onPressed;
 
@@ -26,16 +30,19 @@ class WideButton extends StatelessWidget {
       height: height,
       width: MediaQuery.of(context).size.width <= 500
           ? MediaQuery.of(context).size.width
-          : 350,
+          : width,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: padding),
+        padding: EdgeInsets.all(padding),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             backgroundColor: backgroundColor,
             foregroundColor: foregroundColor,
           ),
           onPressed: onPressed,
-          child: Text(text),
+          child: Text(
+            text,
+            style: textStyle,
+          ),
         ),
       ),
     );
