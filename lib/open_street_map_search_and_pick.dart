@@ -20,8 +20,11 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final Color buttonColor;
   final Color buttonTextColor;
   final Color locationPinIconColor;
+  final String? locationPinText;
+  final TextStyle? locationPinTextStyle;
   final String buttonText;
   final String hintText;
+  final TextStyle? buttonTextStyle;
   final String baseUri;
 
   static Future<LatLng> nopFunction() {
@@ -38,6 +41,10 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
       this.onGetCurrentLocationPressed = nopFunction,
       this.buttonColor = Colors.blue,
       this.locationPinIconColor = Colors.blue,
+      this.locationPinText,
+      this.locationPinTextStyle,
+      this.hintText = 'Search Location',
+      this.buttonTextStyle,
       this.buttonTextColor = Colors.white,
       this.buttonText = 'Set Current Location',
       this.hintText = 'Search Location',
@@ -162,27 +169,24 @@ class _OpenStreetMapSearchAndPickState
               ),
             ],
           )),
-          Positioned(
-              top: MediaQuery.of(context).size.height * 0.5,
-              left: 0,
-              right: 0,
-              child: IgnorePointer(
-                child: Center(
-                  child: StatefulBuilder(builder: (context, setState) {
-                    return Text(
-                      _searchController.text,
-                      textAlign: TextAlign.center,
-                    );
-                  }),
-                ),
-              )),
           Positioned.fill(
               child: IgnorePointer(
             child: Center(
-              child: Icon(
-                Icons.location_pin,
-                size: 50,
-                color: widget.locationPinIconColor,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(widget.locationPinText ?? _searchController.text,
+                      style: widget.locationPinTextStyle,
+                      textAlign: TextAlign.center),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 50),
+                    child: Icon(
+                      Icons.location_pin,
+                      size: 50,
+                      color: widget.locationPinIconColor,
+                    ),
+                  ),
+                ],
               ),
             ),
           )),
@@ -197,7 +201,7 @@ class _OpenStreetMapSearchAndPickState
                       _mapController.center, _mapController.zoom + 1);
                 },
                 child: Icon(
-                widget.zoomInIcon,
+                  widget.zoomInIcon,
                   color: widget.buttonTextColor,
                 ),
               )),
@@ -212,7 +216,7 @@ class _OpenStreetMapSearchAndPickState
                       _mapController.center, _mapController.zoom - 1);
                 },
                 child: Icon(
-                widget.zoomOutIcon,
+                  widget.zoomOutIcon,
                   color: widget.buttonTextColor,
                 ),
               )),
@@ -238,7 +242,7 @@ class _OpenStreetMapSearchAndPickState
                   }
                 },
                 child: Icon(
-                widget.currentLocationIcon ,
+                  widget.currentLocationIcon,
                   color: widget.buttonTextColor,
                 ),
               )),
@@ -341,6 +345,7 @@ class _OpenStreetMapSearchAndPickState
                   },
                   backgroundColor: widget.buttonColor,
                   foregroundColor: widget.buttonTextColor,
+                  textStyle: widget.buttonTextStyle,
                 ),
               ),
             ),

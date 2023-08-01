@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class WideButton extends StatelessWidget {
-  const WideButton(
-    this.text, {
-    Key? key,
-    required,
-    this.padding = 0.0,
-    this.height = 45,
-    required this.onPressed,
-    required this.backgroundColor,
-    required this.foregroundColor,
-  }) : super(key: key);
+  const WideButton(this.text,
+      {Key? key,
+      required,
+      this.padding = 0.0,
+      this.height = 45,
+      required this.onPressed,
+      required this.backgroundColor,
+      required this.foregroundColor,
+      this.textStyle})
+      : super(key: key);
 
   /// Should be inside a column, row or flex widget
   final String text;
@@ -18,6 +18,7 @@ class WideButton extends StatelessWidget {
   final double height;
   final Color backgroundColor;
   final Color foregroundColor;
+  final TextStyle? textStyle;
   final void Function() onPressed;
 
   @override
@@ -35,7 +36,7 @@ class WideButton extends StatelessWidget {
             foregroundColor: foregroundColor,
           ),
           onPressed: onPressed,
-          child: Text(text),
+          child: Text(text, style: textStyle),
         ),
       ),
     );
