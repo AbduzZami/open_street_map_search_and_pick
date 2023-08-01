@@ -83,7 +83,8 @@ class _OpenStreetMapSearchAndPickState
     String url =
         '${widget.baseUri}/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
 
-    var response = await client.post(Uri.parse(url));
+    var response = await client.get(Uri.parse(url));
+    // var response = await client.post(Uri.parse(url));
     var decodedResponse =
         jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
 
@@ -105,7 +106,8 @@ class _OpenStreetMapSearchAndPickState
     String url =
         '${widget.baseUri}/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
 
-    var response = await client.post(Uri.parse(url));
+    var response = await client.get(Uri.parse(url));
+    // var response = await client.post(Uri.parse(url));
     var decodedResponse =
         jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
 
@@ -126,7 +128,8 @@ class _OpenStreetMapSearchAndPickState
         String url =
             '${widget.baseUri}/reverse?format=json&lat=${event.center.latitude}&lon=${event.center.longitude}&zoom=18&addressdetails=1';
 
-        var response = await client.post(Uri.parse(url));
+        var response = await client.get(Uri.parse(url));
+        // var response = await client.post(Uri.parse(url));
         var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes))
             as Map<dynamic, dynamic>;
 
@@ -289,7 +292,8 @@ class _OpenStreetMapSearchAndPickState
                             if (kDebugMode) {
                               print(url);
                             }
-                            var response = await client.post(Uri.parse(url));
+                            var response = await client.get(Uri.parse(url));
+                            // var response = await client.post(Uri.parse(url));
                             var decodedResponse =
                                 jsonDecode(utf8.decode(response.bodyBytes))
                                     as List<dynamic>;
@@ -373,7 +377,8 @@ class _OpenStreetMapSearchAndPickState
     String url =
         '${widget.baseUri}/reverse?format=json&lat=${_mapController.center.latitude}&lon=${_mapController.center.longitude}&zoom=18&addressdetails=1';
 
-    var response = await client.post(Uri.parse(url));
+    var response = await client.get(Uri.parse(url));
+    // var response = await client.post(Uri.parse(url));
     var decodedResponse =
         jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
     String displayName = decodedResponse['display_name'];
