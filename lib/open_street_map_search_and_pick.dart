@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
-
 import 'package:open_street_map_search_and_pick/widgets/wide_button.dart';
 
 class OpenStreetMapSearchAndPick extends StatefulWidget {
@@ -17,6 +16,7 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final IconData zoomInIcon;
   final IconData zoomOutIcon;
   final IconData currentLocationIcon;
+  final IconData locationPinIcon;
   final Color buttonColor;
   final Color buttonTextColor;
   final Color locationPinIconColor;
@@ -24,12 +24,15 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final TextStyle? locationPinTextStyle;
   final String buttonText;
   final String hintText;
+  final double buttonHeight;
+  final double buttonWidth;
   final TextStyle? buttonTextStyle;
   final String baseUri;
 
   static Future<LatLng> nopFunction() {
     throw Exception("");
   }
+
 
   const OpenStreetMapSearchAndPick(
       {Key? key,
@@ -48,8 +51,11 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
       this.buttonTextColor = Colors.white,
       this.buttonText = 'Set Current Location',
       this.hintText = 'Search Location',
+      this.buttonHeight = 50,
+      this.buttonWidth = 200,
       this.baseUri = 'https://nominatim.openstreetmap.org'})
       : super(key: key);
+
 
   @override
   State<OpenStreetMapSearchAndPick> createState() =>
@@ -172,6 +178,7 @@ class _OpenStreetMapSearchAndPickState
           Positioned.fill(
               child: IgnorePointer(
             child: Center(
+
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -181,12 +188,13 @@ class _OpenStreetMapSearchAndPickState
                   Padding(
                     padding: const EdgeInsets.only(bottom: 50),
                     child: Icon(
-                      Icons.location_pin,
-                      size: 50,
-                      color: widget.locationPinIconColor,
+                widget.locationPinIcon,
+                size: 50,
+                color: widget.locationPinIconColor,
                     ),
                   ),
                 ],
+
               ),
             ),
           )),
@@ -338,6 +346,9 @@ class _OpenStreetMapSearchAndPickState
                 padding: const EdgeInsets.all(8.0),
                 child: WideButton(
                   widget.buttonText,
+                  textStyle: widget.buttonTextStyle,
+                  height: widget.buttonHeight,
+                  width: widget.buttonWidth,
                   onPressed: () async {
                     pickData().then((value) {
                       widget.onPicked(value);
@@ -366,7 +377,7 @@ class _OpenStreetMapSearchAndPickState
     var decodedResponse =
         jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
     String displayName = decodedResponse['display_name'];
-    return PickedData(center, displayName);
+    return PickedData(center, displayName, decodedResponse["address"]);
   }
 }
 
@@ -400,7 +411,8 @@ class LatLong {
 
 class PickedData {
   final LatLong latLong;
-  final String address;
+  final String addressName;
+  final Map<String, dynamic> address;
 
-  PickedData(this.latLong, this.address);
+  PickedData(this.latLong, this.addressName, this.address);
 }

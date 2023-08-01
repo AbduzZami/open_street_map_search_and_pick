@@ -35,7 +35,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
@@ -69,16 +68,18 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: OpenStreetMapSearchAndPick(
-            center: LatLong(23, 89),
-            buttonColor: Colors.blue,
-            buttonText: 'Set Current Location',
-            onPicked: (pickedData) {
-              print(pickedData.latLong.latitude);
-              print(pickedData.latLong.longitude);
-              print(pickedData.address);
-            },
-            onGetCurrentLocationPressed: locationService.getPosition,
-        )
-    );
+          buttonTextStyle:
+              const TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
+          center: LatLong(23, 89),
+          buttonColor: Colors.blue,
+          buttonText: 'Set Current Location',
+          onPicked: (pickedData) {
+            print(pickedData.latLong.latitude);
+            print(pickedData.latLong.longitude);
+            print(pickedData.address);
+            print(pickedData.addressName);
+          },
+          onGetCurrentLocationPressed: locationService.getPosition,
+        ));
   }
 }
