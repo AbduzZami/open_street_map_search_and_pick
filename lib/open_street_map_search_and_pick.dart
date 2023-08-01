@@ -25,6 +25,7 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final String buttonText;
   final String hintText;
   final TextStyle? buttonTextStyle;
+  final String baseUri;
 
   static Future<LatLng> nopFunction() {
     throw Exception("");
@@ -42,10 +43,12 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
       this.locationPinIconColor = Colors.blue,
       this.locationPinText,
       this.locationPinTextStyle,
+      this.hintText = 'Search Location',
+      this.buttonTextStyle,
       this.buttonTextColor = Colors.white,
       this.buttonText = 'Set Current Location',
       this.hintText = 'Search Location',
-      this.buttonTextStyle})
+      this.baseUri = 'https://nominatim.openstreetmap.org'})
       : super(key: key);
 
   @override
@@ -72,7 +75,7 @@ class _OpenStreetMapSearchAndPickState
       print(longitude);
     }
     String url =
-        'https://nominatim.openstreetmap.org/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
+        '${widget.baseUri}/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
 
     var response = await client.post(Uri.parse(url));
     var decodedResponse =
@@ -92,8 +95,9 @@ class _OpenStreetMapSearchAndPickState
     if (kDebugMode) {
       print(longitude);
     }
+
     String url =
-        'https://nominatim.openstreetmap.org/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
+        '${widget.baseUri}/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
 
     var response = await client.post(Uri.parse(url));
     var decodedResponse =
@@ -114,7 +118,7 @@ class _OpenStreetMapSearchAndPickState
       if (event is MapEventMoveEnd) {
         var client = http.Client();
         String url =
-            'https://nominatim.openstreetmap.org/reverse?format=json&lat=${event.center.latitude}&lon=${event.center.longitude}&zoom=18&addressdetails=1';
+            '${widget.baseUri}/reverse?format=json&lat=${event.center.latitude}&lon=${event.center.longitude}&zoom=18&addressdetails=1';
 
         var response = await client.post(Uri.parse(url));
         var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes))
@@ -273,7 +277,7 @@ class _OpenStreetMapSearchAndPickState
                           var client = http.Client();
                           try {
                             String url =
-                                'https://nominatim.openstreetmap.org/search?q=$value&format=json&polygon_geojson=1&addressdetails=1';
+                                '${widget.baseUri}/search?q=$value&format=json&polygon_geojson=1&addressdetails=1';
                             if (kDebugMode) {
                               print(url);
                             }
@@ -356,7 +360,7 @@ class _OpenStreetMapSearchAndPickState
         _mapController.center.latitude, _mapController.center.longitude);
     var client = http.Client();
     String url =
-        'https://nominatim.openstreetmap.org/reverse?format=json&lat=${_mapController.center.latitude}&lon=${_mapController.center.longitude}&zoom=18&addressdetails=1';
+        '${widget.baseUri}/reverse?format=json&lat=${_mapController.center.latitude}&lon=${_mapController.center.longitude}&zoom=18&addressdetails=1';
 
     var response = await client.post(Uri.parse(url));
     var decodedResponse =
