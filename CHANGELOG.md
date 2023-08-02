@@ -1,4 +1,4 @@
-## 0.0.19
+## 0.1.0
 
 - Huge customizations
 - Bug fixes.

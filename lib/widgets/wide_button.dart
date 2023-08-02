@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WideButton extends StatelessWidget {
-  WideButton(this.text,
+  const WideButton(this.text,
       {Key? key,
       required,
       this.padding = 0.0,
