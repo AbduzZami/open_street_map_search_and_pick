@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\CMakeFiles\b88a8f9c69b2f85a342b54d6f48ad022\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{994326ED-BF1B-364F-A7E5-12ABF00A8648}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

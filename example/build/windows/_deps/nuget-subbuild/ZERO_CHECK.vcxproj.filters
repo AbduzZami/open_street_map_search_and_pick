@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\Codes\Flutter\open_street_map_search_and_pick\example\build\windows\_deps\nuget-subbuild\CMakeFiles\f277ec86fbfc4d2238757ed5d62501ee\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{C4069E94-35B0-32B4-92E5-B4C33DA5FE06}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

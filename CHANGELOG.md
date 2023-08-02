@@ -1,7 +1,4 @@
-## 0.0.17
+## 0.0.18
 
-- Support for all 6 platforms.
-- Delay for finishing typing.
-- Customizable button.
-- Necessary herotag added.
+- Huge customizations
 - Bug fixes.

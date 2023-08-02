@@ -1,0 +1,10 @@
+^E:\CODES\FLUTTER\OPEN_STREET_MAP_SEARCH_AND_PICK\EXAMPLE\BUILD\WINDOWS\CMAKEFILES\660A7C084FF6573047D35EDF7FAD3E7A\GENERATE.STAMP.RULE
+setlocal
+"F:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SE:/Codes/Flutter/open_street_map_search_and_pick/example/windows -BE:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/example.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

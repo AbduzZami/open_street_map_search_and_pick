@@ -20,23 +20,22 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final Color buttonColor;
   final Color buttonTextColor;
   final Color locationPinIconColor;
-  final String? locationPinText;
-  final TextStyle? locationPinTextStyle;
+  final String locationPinText;
+  final TextStyle locationPinTextStyle;
   final String buttonText;
   final String hintText;
   final double buttonHeight;
   final double buttonWidth;
-  final TextStyle? buttonTextStyle;
+  final TextStyle buttonTextStyle;
   final String baseUri;
 
   static Future<LatLng> nopFunction() {
     throw Exception("");
   }
 
-
   const OpenStreetMapSearchAndPick(
       {Key? key,
-      required this.center,
+      this.center = const LatLong(0, 0),
       required this.onPicked,
       this.zoomOutIcon = Icons.zoom_out_map,
       this.zoomInIcon = Icons.zoom_in_map,
@@ -44,18 +43,19 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
       this.onGetCurrentLocationPressed = nopFunction,
       this.buttonColor = Colors.blue,
       this.locationPinIconColor = Colors.blue,
-      this.locationPinText,
-      this.locationPinTextStyle,
+      this.locationPinText = 'Location',
+      this.locationPinTextStyle = const TextStyle(
+          fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
       this.hintText = 'Search Location',
-      this.buttonTextStyle,
+      this.buttonTextStyle = const TextStyle(
+          fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
       this.buttonTextColor = Colors.white,
       this.buttonText = 'Set Current Location',
-      this.hintText = 'Search Location',
       this.buttonHeight = 50,
       this.buttonWidth = 200,
-      this.baseUri = 'https://nominatim.openstreetmap.org'})
+      this.baseUri = 'https://nominatim.openstreetmap.org',
+      this.locationPinIcon = Icons.location_on})
       : super(key: key);
-
 
   @override
   State<OpenStreetMapSearchAndPick> createState() =>
@@ -181,23 +181,21 @@ class _OpenStreetMapSearchAndPickState
           Positioned.fill(
               child: IgnorePointer(
             child: Center(
-
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(widget.locationPinText ?? _searchController.text,
+                  Text(widget.locationPinText,
                       style: widget.locationPinTextStyle,
                       textAlign: TextAlign.center),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 50),
                     child: Icon(
-                widget.locationPinIcon,
-                size: 50,
-                color: widget.locationPinIconColor,
+                      widget.locationPinIcon,
+                      size: 50,
+                      color: widget.locationPinIconColor,
                     ),
                   ),
                 ],
-
               ),
             ),
           )),
@@ -360,7 +358,6 @@ class _OpenStreetMapSearchAndPickState
                   },
                   backgroundColor: widget.buttonColor,
                   foregroundColor: widget.buttonTextColor,
-                  textStyle: widget.buttonTextStyle,
                 ),
               ),
             ),
@@ -411,7 +408,7 @@ class OSMdata {
 class LatLong {
   final double latitude;
   final double longitude;
-  LatLong(this.latitude, this.longitude);
+  const LatLong(this.latitude, this.longitude);
 }
 
 class PickedData {

@@ -1,0 +1,49 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/_deps/nuget-subbuild/CMakeFiles/nuget-populate"
+		},
+		{
+			"file" : "E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/_deps/nuget-subbuild/CMakeFiles/f277ec86fbfc4d2238757ed5d62501ee/nuget-populate.rule"
+		},
+		{
+			"file" : "E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/_deps/nuget-subbuild/CMakeFiles/0bf4f6f09357f788674b2b733c6a7caa/nuget-populate-complete.rule"
+		},
+		{
+			"file" : "E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/_deps/nuget-subbuild/CMakeFiles/7464899a46d1d14d789f49223c63b469/nuget-populate-build.rule"
+		},
+		{
+			"file" : "E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/_deps/nuget-subbuild/CMakeFiles/7464899a46d1d14d789f49223c63b469/nuget-populate-configure.rule"
+		},
+		{
+			"file" : "E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/_deps/nuget-subbuild/CMakeFiles/7464899a46d1d14d789f49223c63b469/nuget-populate-copyfile.rule"
+		},
+		{
+			"file" : "E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/_deps/nuget-subbuild/CMakeFiles/7464899a46d1d14d789f49223c63b469/nuget-populate-download.rule"
+		},
+		{
+			"file" : "E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/_deps/nuget-subbuild/CMakeFiles/7464899a46d1d14d789f49223c63b469/nuget-populate-install.rule"
+		},
+		{
+			"file" : "E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/_deps/nuget-subbuild/CMakeFiles/7464899a46d1d14d789f49223c63b469/nuget-populate-mkdir.rule"
+		},
+		{
+			"file" : "E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/_deps/nuget-subbuild/CMakeFiles/7464899a46d1d14d789f49223c63b469/nuget-populate-patch.rule"
+		},
+		{
+			"file" : "E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/_deps/nuget-subbuild/CMakeFiles/7464899a46d1d14d789f49223c63b469/nuget-populate-test.rule"
+		},
+		{
+			"file" : "E:/Codes/Flutter/open_street_map_search_and_pick/example/build/windows/_deps/nuget-subbuild/CMakeFiles/7464899a46d1d14d789f49223c63b469/nuget-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"nuget-populate"
+		],
+		"name" : "nuget-populate"
+	}
+}
