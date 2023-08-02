@@ -89,3 +89,8 @@ Click on the image below to view a video tutorial. It will redirect you to a you
 <a href="https://github.com/FlorianPix"><img src="https://avatars.githubusercontent.com/u/34790464?v=4" title="FlorianPix" width="80" height="80"></a>
 <a href="https://github.com/A7MeDG0L0L"><img src="https://avatars.githubusercontent.com/u/33913003?v=4" title="Ahmed Galal" width="80" height="80"></a>
 <a href="https://github.com/rlbartz"><img src="https://avatars.githubusercontent.com/u/2353852?v=4" title="rlbartz" width="80" height="80"></a>
+<a href="https://github.com/mz2"><img src="https://avatars.githubusercontent.com/u/71363?v=4" title="mz2" width="80" height="80"></a>
+<a href="https://github.com/bartzdev"><img src="https://avatars.githubusercontent.com/u/69410101?v=4" title="bartzdev" width="80" height="80"></a>
+<a href="https://github.com/Sanat2002"><img src="https://avatars.githubusercontent.com/u/76841209?v=4" title="Sanat2002" width="80" height="80"></a>
+<a href="https://github.com/MuhammadAzharUmar"><img src="https://avatars.githubusercontent.com/u/83802823?v=4" title="MuhammadAzharUmar" width="80" height="80"></a>
+
