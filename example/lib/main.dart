@@ -1,4 +1,3 @@
-import 'package:example/services/location_service.dart';
 import 'package:flutter/material.dart';
 import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 
@@ -51,7 +50,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final LocationService locationService = LocationService();
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
         body: OpenStreetMapSearchAndPick(
           buttonTextStyle:
               const TextStyle(fontSize: 18, fontStyle: FontStyle.normal),
-          center: LatLong(23, 89),
           buttonColor: Colors.blue,
           buttonText: 'Set Current Location',
           onPicked: (pickedData) {
@@ -79,7 +76,6 @@ class _MyHomePageState extends State<MyHomePage> {
             print(pickedData.address);
             print(pickedData.addressName);
           },
-          onGetCurrentLocationPressed: locationService.getPosition,
         ));
   }
 }
