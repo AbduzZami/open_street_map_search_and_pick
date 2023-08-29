@@ -63,6 +63,7 @@ For example
             center: LatLong(23, 89),
             buttonColor: Colors.blue,
             buttonText: 'Set Current Location',
+            userLocation: true // for getting user current location
             onPicked: (pickedData) {
               print(pickedData.latLong.latitude);
               print(pickedData.latLong.longitude);
