@@ -16,6 +16,7 @@ dependencies:
   http: ^0.13.5
   latlong2: ^0.8.1
   lints: ^2.0.0
+  geolocator: ^9.0.2
 
 dev_dependencies:
   flutter_test:

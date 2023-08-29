@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
+import 'package:open_street_map_search_and_pick/services/location.dart';
 import 'package:open_street_map_search_and_pick/widgets/wide_button.dart';
 
 class OpenStreetMapSearchAndPick extends StatefulWidget {
@@ -28,6 +29,7 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final double buttonWidth;
   final TextStyle buttonTextStyle;
   final String baseUri;
+  final bool userLocation;
 
   static Future<LatLng> nopFunction() {
     throw Exception("");
@@ -54,7 +56,8 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
       this.buttonHeight = 50,
       this.buttonWidth = 200,
       this.baseUri = 'https://nominatim.openstreetmap.org',
-      this.locationPinIcon = Icons.location_on})
+      this.locationPinIcon = Icons.location_on,
+      this.userLocation = false})
       : super(key: key);
 
   @override
@@ -93,9 +96,31 @@ class _OpenStreetMapSearchAndPickState
     setState(() {});
   }
 
-  void setNameCurrentPosAtInit() async {
-    double latitude = widget.center.latitude;
-    double longitude = widget.center.longitude;
+  /// Sets the name of the current position at initialization.
+  ///
+  /// [setNameCurrentPosAtInit] function is responsible for determining the address of a given
+  /// geographical position specified by [latitude] and [longitude] coordinates.
+  /// If [latitude] and [longitude] are not provided, the function defaults to using
+  /// the values of [latitude] and [longitude] from the widget's center property.
+  ///
+  /// The determined address or location name is then displayed using the
+  /// provided [TextEditingController] (_searchController) and triggers a UI update
+  /// through the [setState] method.
+  ///
+  /// Parameters:
+  /// - @lat (optional): The [latitude] of the target position. If not provided,
+  ///   the latitude value will be extracted from the widget's center property.
+  /// - @long (optional): The [longitude] of the target position. If not provided,
+  ///   the longitude value will be extracted from the widget's center property.
+  ///
+  /// Example usage:
+  /// ```dart
+  /// setNameCurrentPosAtInit(lat: 37.7749, long: -122.4194);
+  /// ```
+  ///
+  void setNameCurrentPosAtInit({double? lat, double? long}) async {
+    double latitude = lat ?? widget.center.latitude;
+    double longitude = long ?? widget.center.longitude;
     if (kDebugMode) {
       print(latitude);
     }
@@ -120,7 +145,22 @@ class _OpenStreetMapSearchAndPickState
   void initState() {
     _mapController = MapController();
 
-    setNameCurrentPosAtInit();
+    if (widget.userLocation) {
+      determinePosition().then(
+        (position) {
+          // Update the map controller's center coordinates with the user's position.
+          _mapController.center.latitude = position.latitude;
+          _mapController.center.longitude = position.longitude;
+          // Set the name of the current position of the user.
+          setNameCurrentPosAtInit(
+            lat: position.latitude,
+            long: position.longitude,
+          );
+        },
+      ).catchError((error) => throw error);
+    } else {
+      setNameCurrentPosAtInit();
+    }
 
     _mapController.mapEventStream.listen((event) async {
       if (event is MapEventMoveEnd) {
