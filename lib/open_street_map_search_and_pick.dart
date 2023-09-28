@@ -28,35 +28,31 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final TextStyle buttonTextStyle;
   final String baseUri;
 
-  const OpenStreetMapSearchAndPick(
-      {Key? key,
-      required this.onPicked,
-      this.zoomOutIcon = Icons.zoom_out_map,
-      this.zoomInIcon = Icons.zoom_in_map,
-      this.currentLocationIcon = Icons.my_location,
-      this.buttonColor = Colors.blue,
-      this.locationPinIconColor = Colors.blue,
-      this.locationPinText = 'Location',
-      this.locationPinTextStyle = const TextStyle(
-          fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
-      this.hintText = 'Search Location',
-      this.buttonTextStyle = const TextStyle(
-          fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-      this.buttonTextColor = Colors.white,
-      this.buttonText = 'Set Current Location',
-      this.buttonHeight = 50,
-      this.buttonWidth = 200,
-      this.baseUri = 'https://nominatim.openstreetmap.org',
-      this.locationPinIcon = Icons.location_on})
-      : super(key: key);
+  const OpenStreetMapSearchAndPick({
+    Key? key,
+    required this.onPicked,
+    this.zoomOutIcon = Icons.zoom_out_map,
+    this.zoomInIcon = Icons.zoom_in_map,
+    this.currentLocationIcon = Icons.my_location,
+    this.buttonColor = Colors.blue,
+    this.locationPinIconColor = Colors.blue,
+    this.locationPinText = 'Location',
+    this.locationPinTextStyle = const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.blue),
+    this.hintText = 'Search Location',
+    this.buttonTextStyle = const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+    this.buttonTextColor = Colors.white,
+    this.buttonText = 'Set Current Location',
+    this.buttonHeight = 50,
+    this.buttonWidth = 200,
+    this.baseUri = 'https://nominatim.openstreetmap.org',
+    this.locationPinIcon = Icons.location_on,
+  }) : super(key: key);
 
   @override
-  State<OpenStreetMapSearchAndPick> createState() =>
-      _OpenStreetMapSearchAndPickState();
+  State<OpenStreetMapSearchAndPick> createState() => _OpenStreetMapSearchAndPickState();
 }
 
-class _OpenStreetMapSearchAndPickState
-    extends State<OpenStreetMapSearchAndPick> {
+class _OpenStreetMapSearchAndPickState extends State<OpenStreetMapSearchAndPick> {
   MapController _mapController = MapController();
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
@@ -81,8 +77,7 @@ class _OpenStreetMapSearchAndPickState
   }
 
   Future<Position?> getPosition(LocationPermission locationPermission) async {
-    if (locationPermission == LocationPermission.denied ||
-        locationPermission == LocationPermission.deniedForever) {
+    if (locationPermission == LocationPermission.denied || locationPermission == LocationPermission.deniedForever) {
       return null;
     }
     Position position = await Geolocator.getCurrentPosition();
@@ -99,16 +94,13 @@ class _OpenStreetMapSearchAndPickState
     if (kDebugMode) {
       print(longitude);
     }
-    String url =
-        '${widget.baseUri}/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
+    String url = '${widget.baseUri}/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
 
     var response = await client.get(Uri.parse(url));
     // var response = await client.post(Uri.parse(url));
-    var decodedResponse =
-        jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
+    var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
 
-    _searchController.text =
-        decodedResponse['display_name'] ?? "MOVE TO CURRENT POSITION";
+    _searchController.text = decodedResponse['display_name'] ?? "MOVE TO CURRENT POSITION";
     setState(() {});
   }
 
@@ -120,16 +112,13 @@ class _OpenStreetMapSearchAndPickState
       print(longitude);
     }
 
-    String url =
-        '${widget.baseUri}/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
+    String url = '${widget.baseUri}/reverse?format=json&lat=$latitude&lon=$longitude&zoom=18&addressdetails=1';
 
     var response = await client.get(Uri.parse(url));
     // var response = await client.post(Uri.parse(url));
-    var decodedResponse =
-        jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
+    var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
 
-    _searchController.text =
-        decodedResponse['display_name'] ?? "MOVE TO CURRENT POSITION";
+    _searchController.text = decodedResponse['display_name'] ?? "MOVE TO CURRENT POSITION";
   }
 
   @override
@@ -145,8 +134,7 @@ class _OpenStreetMapSearchAndPickState
 
           var response = await client.get(Uri.parse(url));
           // var response = await client.post(Uri.parse(url));
-          var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes))
-              as Map<dynamic, dynamic>;
+          var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
 
           _searchController.text = decodedResponse['display_name'];
           setState(() {});
@@ -196,94 +184,90 @@ class _OpenStreetMapSearchAndPickState
           child: Stack(
             children: [
               Positioned.fill(
-                  child: FlutterMap(
-                options: MapOptions(
-                    center: mapCentre, zoom: 15.0, maxZoom: 18, minZoom: 6),
-                mapController: _mapController,
-                children: [
-                  TileLayer(
-                    urlTemplate:
-                        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                    subdomains: const ['a', 'b', 'c'],
-                    // attributionBuilder: (_) {
-                    //   return Text("© OpenStreetMap contributors");
-                    // },
-                  ),
-                ],
-              )),
+                child: FlutterMap(
+                  options: MapOptions(center: mapCentre, zoom: 15.0, maxZoom: 18, minZoom: 6),
+                  mapController: _mapController,
+                  children: [
+                    TileLayer(
+                      urlTemplate: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                      subdomains: const ['a', 'b', 'c'],
+                      // attributionBuilder: (_) {
+                      //   return Text("© OpenStreetMap contributors");
+                      // },
+                    ),
+                  ],
+                ),
+              ),
               Positioned.fill(
-                  child: IgnorePointer(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(widget.locationPinText,
-                          style: widget.locationPinTextStyle,
-                          textAlign: TextAlign.center),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 50),
-                        child: Icon(
-                          widget.locationPinIcon,
-                          size: 50,
-                          color: widget.locationPinIconColor,
+                child: IgnorePointer(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(widget.locationPinText, style: widget.locationPinTextStyle, textAlign: TextAlign.center),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 50),
+                          child: Icon(
+                            widget.locationPinIcon,
+                            size: 50,
+                            color: widget.locationPinIconColor,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              )),
+              ),
               Positioned(
-                  bottom: 180,
-                  right: 5,
-                  child: FloatingActionButton(
-                    heroTag: 'btn1',
-                    backgroundColor: widget.buttonColor,
-                    onPressed: () {
-                      _mapController.move(
-                          _mapController.center, _mapController.zoom + 1);
-                    },
-                    child: Icon(
-                      widget.zoomInIcon,
-                      color: widget.buttonTextColor,
-                    ),
-                  )),
+                bottom: 180,
+                right: 5,
+                child: FloatingActionButton(
+                  heroTag: 'btn1',
+                  backgroundColor: widget.buttonColor,
+                  onPressed: () {
+                    _mapController.move(_mapController.center, _mapController.zoom + 1);
+                  },
+                  child: Icon(
+                    widget.zoomInIcon,
+                    color: widget.buttonTextColor,
+                  ),
+                ),
+              ),
               Positioned(
-                  bottom: 120,
-                  right: 5,
-                  child: FloatingActionButton(
-                    heroTag: 'btn2',
-                    backgroundColor: widget.buttonColor,
-                    onPressed: () {
-                      _mapController.move(
-                          _mapController.center, _mapController.zoom - 1);
-                    },
-                    child: Icon(
-                      widget.zoomOutIcon,
-                      color: widget.buttonTextColor,
-                    ),
-                  )),
+                bottom: 120,
+                right: 5,
+                child: FloatingActionButton(
+                  heroTag: 'btn2',
+                  backgroundColor: widget.buttonColor,
+                  onPressed: () {
+                    _mapController.move(_mapController.center, _mapController.zoom - 1);
+                  },
+                  child: Icon(
+                    widget.zoomOutIcon,
+                    color: widget.buttonTextColor,
+                  ),
+                ),
+              ),
               Positioned(
-                  bottom: 60,
-                  right: 5,
-                  child: FloatingActionButton(
-                    heroTag: 'btn3',
-                    backgroundColor: widget.buttonColor,
-                    onPressed: () async {
-                      if (mapCentre != null) {
-                        _mapController.move(
-                            LatLng(mapCentre.latitude, mapCentre.longitude),
-                            _mapController.zoom);
-                      } else {
-                        _mapController.move(
-                            LatLng(50.5, 30.51), _mapController.zoom);
-                      }
-                      setNameCurrentPos();
-                    },
-                    child: Icon(
-                      widget.currentLocationIcon,
-                      color: widget.buttonTextColor,
-                    ),
-                  )),
+                bottom: 60,
+                right: 5,
+                child: FloatingActionButton(
+                  heroTag: 'btn3',
+                  backgroundColor: widget.buttonColor,
+                  onPressed: () async {
+                    if (mapCentre != null) {
+                      _mapController.move(LatLng(mapCentre.latitude, mapCentre.longitude), _mapController.zoom);
+                    } else {
+                      _mapController.move(LatLng(50.5, 30.51), _mapController.zoom);
+                    }
+                    setNameCurrentPos();
+                  },
+                  child: Icon(
+                    widget.currentLocationIcon,
+                    color: widget.buttonTextColor,
+                  ),
+                ),
+              ),
               Positioned(
                 top: 0,
                 left: 0,
@@ -305,34 +289,34 @@ class _OpenStreetMapSearchAndPickState
                             focusedBorder: inputFocusBorder,
                           ),
                           onChanged: (String value) {
-                            if (_debounce?.isActive ?? false)
+                            if (_debounce?.isActive ?? false) {
                               _debounce?.cancel();
+                            }
 
-                            _debounce = Timer(
-                                const Duration(milliseconds: 2000), () async {
+                            _debounce = Timer(const Duration(milliseconds: 2000), () async {
                               if (kDebugMode) {
                                 print(value);
                               }
                               var client = http.Client();
                               try {
-                                String url =
-                                    '${widget.baseUri}/search?q=$value&format=json&polygon_geojson=1&addressdetails=1';
+                                String url = '${widget.baseUri}/search?q=$value&format=json&polygon_geojson=1&addressdetails=1';
                                 if (kDebugMode) {
                                   print(url);
                                 }
                                 var response = await client.get(Uri.parse(url));
                                 // var response = await client.post(Uri.parse(url));
-                                var decodedResponse =
-                                    jsonDecode(utf8.decode(response.bodyBytes))
-                                        as List<dynamic>;
+                                var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as List<dynamic>;
                                 if (kDebugMode) {
                                   print(decodedResponse);
                                 }
                                 _options = decodedResponse
-                                    .map((e) => OSMdata(
+                                    .map(
+                                      (e) => OSMdata(
                                         displayname: e['display_name'],
                                         lat: double.parse(e['lat']),
-                                        lon: double.parse(e['lon'])))
+                                        lon: double.parse(e['lon']),
+                                      ),
+                                    )
                                     .toList();
                                 setState(() {});
                               } finally {
@@ -342,30 +326,28 @@ class _OpenStreetMapSearchAndPickState
                               setState(() {});
                             });
                           }),
-                      StatefulBuilder(builder: ((context, setState) {
-                        return ListView.builder(
+                      StatefulBuilder(
+                        builder: ((context, setState) {
+                          return ListView.builder(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount:
-                                _options.length > 5 ? 5 : _options.length,
+                            itemCount: _options.length > 5 ? 5 : _options.length,
                             itemBuilder: (context, index) {
                               return ListTile(
                                 title: Text(_options[index].displayname),
-                                subtitle: Text(
-                                    '${_options[index].lat},${_options[index].lon}'),
+                                subtitle: Text('${_options[index].lat},${_options[index].lon}'),
                                 onTap: () {
-                                  _mapController.move(
-                                      LatLng(_options[index].lat,
-                                          _options[index].lon),
-                                      15.0);
+                                  _mapController.move(LatLng(_options[index].lat, _options[index].lon), 15.0);
 
                                   _focusNode.unfocus();
                                   _options.clear();
                                   setState(() {});
                                 },
                               );
-                            });
-                      })),
+                            },
+                          );
+                        }),
+                      ),
                     ],
                   ),
                 ),
@@ -383,9 +365,8 @@ class _OpenStreetMapSearchAndPickState
                       height: widget.buttonHeight,
                       width: widget.buttonWidth,
                       onPressed: () async {
-                        pickData().then((value) {
-                          widget.onPicked(value);
-                        });
+                        final value = await pickData();
+                        widget.onPicked(value);
                       },
                       backgroundColor: widget.buttonColor,
                       foregroundColor: widget.buttonTextColor,
@@ -401,16 +382,14 @@ class _OpenStreetMapSearchAndPickState
   }
 
   Future<PickedData> pickData() async {
-    LatLong center = LatLong(
-        _mapController.center.latitude, _mapController.center.longitude);
+    LatLong center = LatLong(_mapController.center.latitude, _mapController.center.longitude);
     var client = http.Client();
     String url =
         '${widget.baseUri}/reverse?format=json&lat=${_mapController.center.latitude}&lon=${_mapController.center.longitude}&zoom=18&addressdetails=1';
 
     var response = await client.get(Uri.parse(url));
     // var response = await client.post(Uri.parse(url));
-    var decodedResponse =
-        jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
+    var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
     String displayName = decodedResponse['display_name'];
     return PickedData(center, displayName, decodedResponse["address"]);
   }
