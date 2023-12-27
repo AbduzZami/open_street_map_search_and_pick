@@ -28,7 +28,9 @@ class WideButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: height,
-      width: MediaQuery.of(context).size.width <= 500 ? MediaQuery.of(context).size.width : width,
+      width: MediaQuery.of(context).size.width <= 500
+          ? MediaQuery.of(context).size.width
+          : width,
       child: Padding(
         padding: EdgeInsets.all(padding),
         child: ElevatedButton(
